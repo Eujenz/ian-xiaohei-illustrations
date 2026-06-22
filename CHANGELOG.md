@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.1
+
+- Scoped character prompt comparison by manifest when `--manifest` is provided.
+- Extra prompt files outside the manifest are now reported as warnings instead of noisy missing swapped prompts.
+
 ## v0.4.0
 
 - Added character profile validation with deterministic schema and business-rule checks.

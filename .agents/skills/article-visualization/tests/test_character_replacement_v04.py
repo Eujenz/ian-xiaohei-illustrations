@@ -14,6 +14,7 @@ render_prompt = load_script("render_prompt")
 resolve_deformation_rules = load_script("resolve_deformation_rules")
 overlay_text = load_script("overlay_text")
 validate_manifest = load_script("validate_manifest")
+compare_character_prompts = load_script("compare_character_prompts")
 
 
 def load_character(character_id: str) -> dict:
@@ -115,3 +116,52 @@ def test_deformation_resolver_behavior_remains_condition_based():
 def test_overlay_text_public_interface_is_unchanged():
     signature = inspect.signature(overlay_text.overlay)
     assert list(signature.parameters) == ["image_path", "overlay_json", "output_path", "font_path"]
+
+
+def test_manifest_scoped_prompt_compare_ignores_extra_original_prompts(tmp_path):
+    original_dir = tmp_path / "original"
+    swapped_dir = tmp_path / "swapped"
+    overlay_dir = tmp_path / "overlays"
+    original_dir.mkdir()
+    swapped_dir.mkdir()
+    overlay_dir.mkdir()
+    for shot_id in ("01", "02", "03", "04", "05"):
+        (original_dir / f"{shot_id}.visual.md").write_text("Do not render readable Chinese text\nBlank label placeholder block\nold", encoding="utf-8")
+    for shot_id in ("01", "02"):
+        (swapped_dir / f"{shot_id}.visual.md").write_text("Do not render readable Chinese text\nBlank label placeholder block\nnew", encoding="utf-8")
+        (overlay_dir / f"{shot_id}.overlay.json").write_text(json.dumps({"labels": [{"text": "標籤"}]}, ensure_ascii=False), encoding="utf-8")
+    manifest = load_manifest()
+    manifest_path = tmp_path / "manifest.json"
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False), encoding="utf-8")
+    report = compare_character_prompts.compare_prompts(str(original_dir), str(swapped_dir), str(overlay_dir), str(manifest_path))
+    assert report["missing_swapped"] == []
+    assert report["warnings"]["extra_original"] == ["03", "04", "05"]
+    assert report["errors"] == []
+
+
+def test_directory_wide_prompt_compare_still_reports_missing_swapped_files(tmp_path):
+    original_dir = tmp_path / "original"
+    swapped_dir = tmp_path / "swapped"
+    original_dir.mkdir()
+    swapped_dir.mkdir()
+    for shot_id in ("01", "02", "03"):
+        (original_dir / f"{shot_id}.visual.md").write_text("Do not render readable Chinese text\nBlank label placeholder block\nold", encoding="utf-8")
+    for shot_id in ("01", "02"):
+        (swapped_dir / f"{shot_id}.visual.md").write_text("Do not render readable Chinese text\nBlank label placeholder block\nnew", encoding="utf-8")
+    report = compare_character_prompts.compare_prompts(str(original_dir), str(swapped_dir))
+    assert report["missing_swapped"] == ["03"]
+
+
+def test_prompt_compare_detects_overlay_label_leak_when_overlay_paths_available(tmp_path):
+    original_dir = tmp_path / "original"
+    swapped_dir = tmp_path / "swapped"
+    overlay_dir = tmp_path / "overlays"
+    original_dir.mkdir()
+    swapped_dir.mkdir()
+    overlay_dir.mkdir()
+    (original_dir / "01.visual.md").write_text("Do not render readable Chinese text\nBlank label placeholder block\nold", encoding="utf-8")
+    (swapped_dir / "01.visual.md").write_text("Do not render readable Chinese text\nBlank label placeholder block\n標籤", encoding="utf-8")
+    (overlay_dir / "01.overlay.json").write_text(json.dumps({"labels": [{"text": "標籤"}]}, ensure_ascii=False), encoding="utf-8")
+    report = compare_character_prompts.compare_prompts(str(original_dir), str(swapped_dir), str(overlay_dir))
+    assert not report["checks"]["no_overlay_label_leak"]
+    assert report["errors"]

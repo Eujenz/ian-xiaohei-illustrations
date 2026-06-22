@@ -9,10 +9,18 @@ def _prompt_id(path: Path) -> str:
     return path.name.split(".")[0]
 
 
-def compare_prompts(original_dir: str, swapped_dir: str, overlay_dir: str | None = None) -> dict:
+def _manifest_prompt_ids(manifest_path: str | None) -> list[str] | None:
+    if not manifest_path:
+        return None
+    manifest = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    return [Path(shot["visual_prompt_file"]).name.split(".")[0] for shot in manifest.get("shots", [])]
+
+
+def compare_prompts(original_dir: str, swapped_dir: str, overlay_dir: str | None = None, manifest_path: str | None = None) -> dict:
     original = {_prompt_id(path): path for path in Path(original_dir).glob("*.md")}
     swapped = {_prompt_id(path): path for path in Path(swapped_dir).glob("*.md")}
-    ids = sorted(set(original) | set(swapped))
+    scoped_ids = _manifest_prompt_ids(manifest_path)
+    ids = sorted(scoped_ids if scoped_ids is not None else set(original) | set(swapped))
     report = {
         "compared_count": 0,
         "changed_prompts": [],
@@ -24,9 +32,17 @@ def compare_prompts(original_dir: str, swapped_dir: str, overlay_dir: str | None
             "placeholder_block_preserved": True,
             "no_overlay_label_leak": True
         },
-        "warnings": [],
+        "warnings": {
+            "extra_original": [],
+            "extra_swapped": [],
+            "messages": []
+        },
         "errors": []
     }
+    if scoped_ids is not None:
+        expected = set(scoped_ids)
+        report["warnings"]["extra_original"] = sorted(set(original) - expected)
+        report["warnings"]["extra_swapped"] = sorted(set(swapped) - expected)
     overlays = {}
     if overlay_dir:
         for path in Path(overlay_dir).glob("*.json"):
@@ -68,8 +84,9 @@ def main() -> int:
     parser.add_argument("--swapped-dir", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--overlay-dir")
+    parser.add_argument("--manifest")
     args = parser.parse_args()
-    report = compare_prompts(args.original_dir, args.swapped_dir, args.overlay_dir)
+    report = compare_prompts(args.original_dir, args.swapped_dir, args.overlay_dir, args.manifest)
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     Path(args.output).write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
