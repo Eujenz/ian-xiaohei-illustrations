@@ -186,6 +186,15 @@ Generate a v0.2 deterministic shot-list and manifest draft from a Markdown artic
 python .agents/skills/article-visualization/scripts/run_article_planning.py --article .agents/skills/article-visualization/examples/article.sample.md --output-dir .agents/skills/article-visualization/examples --article-slug sample-article --character-id default --max-shots 5
 ```
 
+Run the v0.3 post-generation asset pipeline after textless PNGs exist:
+
+```bash
+python .agents/skills/article-visualization/scripts/import_textless_images.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --source-dir /path/to/generated/textless/images --mode filename
+python .agents/skills/article-visualization/scripts/run_asset_pipeline.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --font /path/to/CJK-font.ttf
+python .agents/skills/article-visualization/scripts/create_contact_sheet.py --images .agents/skills/article-visualization/examples/generated/my-article/final --output .agents/skills/article-visualization/examples/generated/my-article/contact-sheet.png --cols 3
+python .agents/skills/article-visualization/scripts/export_article_assets.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --output .agents/skills/article-visualization/examples/generated/my-article/export/my-article-assets.zip
+```
+
 Notes:
 
 - No image generation API is called in v0.1.

@@ -14,3 +14,7 @@ Character must participate in the core visual action, never as decorative mascot
 Preserve the pipeline contract:
 
 `manifest -> visual prompt -> textless image -> overlay JSON -> final image -> QA report`
+
+v0.3 post-generation workflow:
+
+After users paste generated visual prompts into an image tool and save textless PNGs, use `import_textless_images.py` or place files into `textless/`. Then run `run_asset_pipeline.py` to apply deterministic overlays, QA text, create a contact sheet, and export final assets.

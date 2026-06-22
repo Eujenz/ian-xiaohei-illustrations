@@ -42,10 +42,12 @@ def check_text_in_bounds(overlay_json: dict, canvas: dict) -> list[str]:
     width = canvas.get("width")
     height = canvas.get("height")
     for label in overlay_json.get("labels", []):
+        label_errors: list[str] = []
         for key in ("x", "y", "box_width", "box_height"):
             if not isinstance(label.get(key), int):
-                errors.append(f"{label.get('id', '<unknown>')} {key} must be integer")
-        if errors:
+                label_errors.append(f"{label.get('id', '<unknown>')} {key} must be integer")
+        if label_errors:
+            errors.extend(label_errors)
             continue
         x, y = label["x"], label["y"]
         box_width, box_height = label["box_width"], label["box_height"]

@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.3.0
+
+- Added v0.3 contract audit report.
+- Added `import_textless_images.py` for importing externally generated textless PNGs by shot filename.
+- Implemented deterministic contact sheet generation.
+- Added article asset ZIP export with an adjacent JSON report.
+- Added `run_asset_pipeline.py` for the post-generation phase: text QA, deterministic overlays, contact sheet, and asset bundle.
+- Added `asset-report.schema.json`.
+- Added tests for import, contact sheet, export, asset pipeline, and continued prompt/overlay contracts.
+
 ## v0.2.0
 
 - Added deterministic Markdown article shot planner scaffold.
