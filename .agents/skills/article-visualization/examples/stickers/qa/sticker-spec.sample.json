@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": {
+    "schema": true,
+    "allowed_count": true,
+    "sticker_count_matches": true,
+    "transparent_background": true,
+    "safe_margin": true,
+    "color_mode_rgb": true,
+    "min_dpi": true,
+    "file_size_limits": true,
+    "overlay_bounds": true,
+    "conversation_usefulness": true,
+    "policy_text": true
+  },
+  "warnings": [],
+  "errors": []
+}

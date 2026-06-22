@@ -8,4 +8,4 @@ Generation is overlay-after-generation: render or supply a textless image first,
 
 `structure_type` and `anchor_type` influence prompt rendering and optional character deformation. Character deformation is disabled by default. A deformation snippet may be injected only when mode, structure_type, and anchor_type match an allowed rule and the character remains recognizable.
 
-LINE sticker mode is future work and must not be implemented in v0.1.
+LINE sticker image generation and package export remain future work. v0.5 may prepare sticker-set JSON, textless sticker prompts, overlay JSON drafts, and deterministic spec QA only.

@@ -1,0 +1,134 @@
+{
+  "mode": "line_sticker_set",
+  "sticker_set_id": "sample-sticker-set",
+  "character_id": "sample-alt",
+  "status": "draft",
+  "count": 8,
+  "canvas": {
+    "sticker_max_width": 370,
+    "sticker_max_height": 320,
+    "main_width": 240,
+    "main_height": 240,
+    "tab_width": 96,
+    "tab_height": 74,
+    "transparent_background": true,
+    "safe_margin_px": 10,
+    "color_mode": "RGB",
+    "min_dpi": 72,
+    "max_file_size_bytes": 1000000,
+    "max_zip_size_bytes": 60000000
+  },
+  "text_strategy": "overlay_after_generation",
+  "stickers": [
+    {
+      "id": "01",
+      "phrase": "收到",
+      "emotion": "acknowledgement",
+      "situation": "Confirming that a message has been received.",
+      "pose": "character holding a small blank receipt card",
+      "visual_prompt_file": "prompts/01.visual.md",
+      "overlay_file": "overlays/01.overlay.json",
+      "textless_image": "textless/01.textless.png",
+      "final_image": "final/01.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "02",
+      "phrase": "好的",
+      "emotion": "agreement",
+      "situation": "Agreeing calmly in a work chat.",
+      "pose": "character giving a quiet thumbs-up beside a blank bubble",
+      "visual_prompt_file": "prompts/02.visual.md",
+      "overlay_file": "overlays/02.overlay.json",
+      "textless_image": "textless/02.textless.png",
+      "final_image": "final/02.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "03",
+      "phrase": "等等",
+      "emotion": "pause",
+      "situation": "Asking the other person to wait briefly.",
+      "pose": "character gently holding up one hand near a blank sign",
+      "visual_prompt_file": "prompts/03.visual.md",
+      "overlay_file": "overlays/03.overlay.json",
+      "textless_image": "textless/03.textless.png",
+      "final_image": "final/03.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "04",
+      "phrase": "加油",
+      "emotion": "encouragement",
+      "situation": "Encouraging someone during a difficult task.",
+      "pose": "character pushing a tiny cart forward with effort",
+      "visual_prompt_file": "prompts/04.visual.md",
+      "overlay_file": "overlays/04.overlay.json",
+      "textless_image": "textless/04.textless.png",
+      "final_image": "final/04.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "05",
+      "phrase": "不急",
+      "emotion": "reassurance",
+      "situation": "Telling someone there is no rush.",
+      "pose": "character sitting beside a small blank placard with relaxed posture",
+      "visual_prompt_file": "prompts/05.visual.md",
+      "overlay_file": "overlays/05.overlay.json",
+      "textless_image": "textless/05.textless.png",
+      "final_image": "final/05.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "06",
+      "phrase": "完成",
+      "emotion": "completion",
+      "situation": "Marking a task as finished.",
+      "pose": "character placing a check-shaped object near a blank label",
+      "visual_prompt_file": "prompts/06.visual.md",
+      "overlay_file": "overlays/06.overlay.json",
+      "textless_image": "textless/06.textless.png",
+      "final_image": "final/06.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "07",
+      "phrase": "我看看",
+      "emotion": "checking",
+      "situation": "Offering to inspect something.",
+      "pose": "character leaning over a simple magnifier and blank note",
+      "visual_prompt_file": "prompts/07.visual.md",
+      "overlay_file": "overlays/07.overlay.json",
+      "textless_image": "textless/07.textless.png",
+      "final_image": "final/07.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "08",
+      "phrase": "謝謝",
+      "emotion": "thanks",
+      "situation": "Expressing gratitude.",
+      "pose": "character bowing slightly beside a blank speech bubble",
+      "visual_prompt_file": "prompts/08.visual.md",
+      "overlay_file": "overlays/08.overlay.json",
+      "textless_image": "textless/08.textless.png",
+      "final_image": "final/08.png",
+      "qa_status": "pending"
+    }
+  ],
+  "main_image": {
+    "visual_prompt_file": "prompts/main.visual.md",
+    "overlay_file": "overlays/main.overlay.json",
+    "final_image": "final/main.png"
+  },
+  "tab_image": {
+    "visual_prompt_file": "prompts/tab.visual.md",
+    "overlay_file": "overlays/tab.overlay.json",
+    "final_image": "final/tab.png"
+  },
+  "metadata": {
+    "transparent_background_assumption": true,
+    "version": "v0.5.0"
+  }
+}

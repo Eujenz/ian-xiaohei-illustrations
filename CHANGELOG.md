@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.5.0
+
+- Added static sticker preparation scaffold.
+- Added real `sticker-set.schema.json` for declared sticker specs.
+- Added `create_sticker_set.py`, `render_sticker_prompt.py`, and `qa_sticker_spec.py`.
+- Added sticker design policy, prompt template, and deterministic sticker QA references.
+- Added sample sticker-set JSON, overlay drafts, prompt examples, and sticker spec QA report.
+- Added pytest coverage for sticker schema, prompt textless contract, overlay bounds, and spec QA.
+
 ## v0.4.1
 
 - Scoped character prompt comparison by manifest when `--manifest` is provided.

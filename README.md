@@ -206,6 +206,16 @@ python .agents/skills/article-visualization/scripts/run_pipeline.py --article-di
 python .agents/skills/article-visualization/scripts/compare_character_prompts.py --original-dir .agents/skills/article-visualization/examples/prompts --swapped-dir .agents/skills/article-visualization/examples/prompts-character-swap --output .agents/skills/article-visualization/examples/character-prompt-diff.report.json --overlay-dir .agents/skills/article-visualization/examples/overlays --manifest .agents/skills/article-visualization/examples/manifest.character-swap.sample.json
 ```
 
+Prepare a v0.5 static sticker set scaffold:
+
+```bash
+python .agents/skills/article-visualization/scripts/create_sticker_set.py --character-id sample-alt --sticker-set-id sample-sticker-set --output-dir .agents/skills/article-visualization/examples/stickers --count 8
+python .agents/skills/article-visualization/scripts/render_sticker_prompt.py --sticker-set .agents/skills/article-visualization/examples/stickers/sticker-set.sample.json --character .agents/skills/article-visualization/characters/sample-alt/character.json --sticker-id 01 --overlay .agents/skills/article-visualization/examples/stickers/overlays/01.overlay.json --output .agents/skills/article-visualization/examples/stickers/prompts/01.visual.md
+python .agents/skills/article-visualization/scripts/qa_sticker_spec.py --sticker-set .agents/skills/article-visualization/examples/stickers/sticker-set.sample.json --output .agents/skills/article-visualization/examples/stickers/qa/sticker-spec.sample.json
+```
+
+v0.5 models static sticker specs, prompts, overlays, and deterministic QA only. It does not generate sticker images or export a LINE ZIP package.
+
 Notes:
 
 - No image generation API is called in v0.1.

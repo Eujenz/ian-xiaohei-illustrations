@@ -1,1 +1,88 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","description":"Future LINE sticker mode only; not implemented in v0.1.","properties":{"mode":{"const":"line_sticker_set"}}}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "mode",
+    "sticker_set_id",
+    "character_id",
+    "status",
+    "count",
+    "canvas",
+    "text_strategy",
+    "stickers"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "mode": {"const": "line_sticker_set"},
+    "sticker_set_id": {"type": "string", "minLength": 1},
+    "character_id": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "count": {"enum": [8, 16, 24, 32, 40]},
+    "text_strategy": {"const": "overlay_after_generation"},
+    "canvas": {
+      "type": "object",
+      "required": [
+        "sticker_max_width",
+        "sticker_max_height",
+        "main_width",
+        "main_height",
+        "tab_width",
+        "tab_height",
+        "transparent_background",
+        "safe_margin_px",
+        "color_mode",
+        "min_dpi",
+        "max_file_size_bytes",
+        "max_zip_size_bytes"
+      ],
+      "properties": {
+        "sticker_max_width": {"const": 370},
+        "sticker_max_height": {"const": 320},
+        "main_width": {"const": 240},
+        "main_height": {"const": 240},
+        "tab_width": {"const": 96},
+        "tab_height": {"const": 74},
+        "transparent_background": {"const": true},
+        "safe_margin_px": {"const": 10},
+        "color_mode": {"const": "RGB"},
+        "min_dpi": {"minimum": 72},
+        "max_file_size_bytes": {"maximum": 1000000},
+        "max_zip_size_bytes": {"maximum": 60000000}
+      }
+    },
+    "stickers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "phrase",
+          "emotion",
+          "situation",
+          "pose",
+          "visual_prompt_file",
+          "overlay_file",
+          "textless_image",
+          "final_image",
+          "qa_status"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "phrase": {"type": "string", "minLength": 1},
+          "emotion": {"type": "string", "minLength": 1},
+          "situation": {"type": "string", "minLength": 1},
+          "pose": {"type": "string", "minLength": 1},
+          "visual_prompt_file": {"type": "string", "minLength": 1},
+          "overlay_file": {"type": "string", "minLength": 1},
+          "textless_image": {"type": "string", "minLength": 1},
+          "final_image": {"type": "string", "minLength": 1},
+          "qa_status": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "main_image": {"type": "object"},
+    "tab_image": {"type": "object"},
+    "metadata": {"type": "object"}
+  }
+}

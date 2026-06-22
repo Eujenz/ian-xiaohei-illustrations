@@ -22,3 +22,7 @@ After users paste generated visual prompts into an image tool and save textless 
 v0.4 character replacement workflow:
 
 Validate character profiles before use. Character replacement may change `manifest.character_id`, per-shot character IDs when explicitly requested, and regenerated visual prompts. It must not change overlay JSON, overlay label text, overlay coordinates, textless images, final images, article source, shot core ideas, metaphors, structure types, or anchor types.
+
+v0.5 sticker preparation workflow:
+
+Sticker mode is separate from article visualization mode. Use `create_sticker_set.py` to draft sticker-set JSON and overlay JSON, `render_sticker_prompt.py` to create textless sticker prompts, and `qa_sticker_spec.py` to validate declared static sticker specs. Do not generate sticker images or export LINE ZIP packages in v0.5.

@@ -1,0 +1,25 @@
+{
+  "shot_id": "07",
+  "canvas": {
+    "width": 370,
+    "height": 320,
+    "target_ratio": "sticker"
+  },
+  "labels": [
+    {
+      "id": "label_01",
+      "text": "我看看",
+      "anchor": "blank_phrase_area",
+      "placeholder": "blank sign or speech bubble reserved for later text overlay",
+      "x": 238,
+      "y": 260,
+      "box_width": 120,
+      "box_height": 48,
+      "font_size": 24,
+      "rotation": 0,
+      "align": "center",
+      "style": "callout",
+      "max_chars": 6
+    }
+  ]
+}
