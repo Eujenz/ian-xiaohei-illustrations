@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.6.0
+
+- Added post-generation static sticker asset pipeline.
+- Added sample transparent sticker textless asset generation.
+- Added sticker textless PNG importer for common file names.
+- Added deterministic sticker image QA for PNG dimensions, file size, transparency, DPI, and margin warnings.
+- Added sticker contact sheet generation.
+- Added `run_sticker_asset_pipeline.py` and `sticker-asset-report.schema.json`.
+- Added pytest coverage for sticker textless imports, image QA, final PNG rendering, contact sheet generation, and asset report schema.
+- Preserved the `overlay_text.py` coordinate-only boundary; v0.6 does not add image generation, OCR, automatic positioning, background removal, or LINE ZIP export.
+
 ## v0.5.0
 
 - Added static sticker preparation scaffold.

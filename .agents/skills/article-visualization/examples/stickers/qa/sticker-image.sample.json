@@ -1,0 +1,195 @@
+{
+  "passed": true,
+  "checks": {
+    "files_exist": true,
+    "png": true,
+    "dimensions": true,
+    "file_size": true,
+    "transparency": true,
+    "dpi": true
+  },
+  "warnings": [],
+  "errors": [],
+  "per_image": [
+    {
+      "id": "01",
+      "path": "final/01.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 3149,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "02",
+      "path": "final/02.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 3095,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "03",
+      "path": "final/03.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 2781,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "04",
+      "path": "final/04.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 2869,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "05",
+      "path": "final/05.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 2892,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "06",
+      "path": "final/06.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 3425,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "07",
+      "path": "final/07.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 3360,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "08",
+      "path": "final/08.png",
+      "width": 370,
+      "height": 320,
+      "mode": "RGBA",
+      "file_size_bytes": 2575,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 17,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "main",
+      "path": "final/main.png",
+      "width": 240,
+      "height": 240,
+      "mode": "RGBA",
+      "file_size_bytes": 1683,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 11,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "id": "tab",
+      "path": "final/tab.png",
+      "width": 96,
+      "height": 74,
+      "mode": "RGBA",
+      "file_size_bytes": 1274,
+      "has_alpha": true,
+      "has_transparent_pixels": true,
+      "dpi": [
+        72.009,
+        72.009
+      ],
+      "alpha_margin_px": 11,
+      "passed": true,
+      "warnings": [],
+      "errors": []
+    }
+  ]
+}

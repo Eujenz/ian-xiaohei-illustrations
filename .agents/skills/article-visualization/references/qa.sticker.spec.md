@@ -18,3 +18,5 @@ Checks:
 - No URLs, logos, ads, trademarks, or brand references.
 - Sticker is not text-only.
 - No OCR, image loading, background removal, or image generation in v0.5.
+
+v0.6 adds separate deterministic image QA after textless or final PNGs exist. Image QA checks PNG format, dimensions, file size, transparency, color mode constraints, DPI metadata, and safe-margin warnings. It still does not use OCR, blank-area detection, automatic positioning, background removal, or image generation.

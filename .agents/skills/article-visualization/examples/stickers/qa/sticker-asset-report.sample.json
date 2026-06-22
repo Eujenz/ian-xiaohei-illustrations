@@ -1,0 +1,116 @@
+{
+  "mode": "line_sticker_set",
+  "sticker_set_id": "sample-sticker-set",
+  "character_id": "sample-alt",
+  "base_dir": ".",
+  "generated_at": "2026-06-22T09:09:58.686866+00:00",
+  "summary": {
+    "sticker_count": 8,
+    "textless_found_count": 10,
+    "final_generated_count": 10,
+    "image_qa_passed_count": 10,
+    "image_qa_failed_count": 0,
+    "errors_count": 0,
+    "warnings_count": 0
+  },
+  "stickers": [
+    {
+      "id": "01",
+      "textless_image": "textless/01.textless.png",
+      "final_image": "final/01.png",
+      "overlay_file": "overlays/01.overlay.json",
+      "prompt_file": "prompts/01.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "02",
+      "textless_image": "textless/02.textless.png",
+      "final_image": "final/02.png",
+      "overlay_file": "overlays/02.overlay.json",
+      "prompt_file": "prompts/02.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "03",
+      "textless_image": "textless/03.textless.png",
+      "final_image": "final/03.png",
+      "overlay_file": "overlays/03.overlay.json",
+      "prompt_file": "prompts/03.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "04",
+      "textless_image": "textless/04.textless.png",
+      "final_image": "final/04.png",
+      "overlay_file": "overlays/04.overlay.json",
+      "prompt_file": "prompts/04.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "05",
+      "textless_image": "textless/05.textless.png",
+      "final_image": "final/05.png",
+      "overlay_file": "overlays/05.overlay.json",
+      "prompt_file": "prompts/05.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "06",
+      "textless_image": "textless/06.textless.png",
+      "final_image": "final/06.png",
+      "overlay_file": "overlays/06.overlay.json",
+      "prompt_file": "prompts/06.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "07",
+      "textless_image": "textless/07.textless.png",
+      "final_image": "final/07.png",
+      "overlay_file": "overlays/07.overlay.json",
+      "prompt_file": "prompts/07.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    },
+    {
+      "id": "08",
+      "textless_image": "textless/08.textless.png",
+      "final_image": "final/08.png",
+      "overlay_file": "overlays/08.overlay.json",
+      "prompt_file": "prompts/08.visual.md",
+      "qa_image_report": "qa/sticker-image.sample.json",
+      "status": "final_generated"
+    }
+  ],
+  "main_image": {
+    "id": "main",
+    "textless_image": "textless/main.textless.png",
+    "final_image": "final/main.png",
+    "overlay_file": "overlays/main.overlay.json",
+    "prompt_file": "prompts/main.visual.md",
+    "qa_image_report": "qa/sticker-image.sample.json",
+    "status": "final_generated"
+  },
+  "tab_image": {
+    "id": "tab",
+    "textless_image": "textless/tab.textless.png",
+    "final_image": "final/tab.png",
+    "overlay_file": "overlays/tab.overlay.json",
+    "prompt_file": "prompts/tab.visual.md",
+    "qa_image_report": "qa/sticker-image.sample.json",
+    "status": "final_generated"
+  },
+  "contact_sheet": "contact-sheet.png",
+  "reports": {
+    "sticker_spec": "qa/sticker-spec.sample.json",
+    "sticker_images": "qa/sticker-image.sample.json",
+    "sticker_asset": "qa/sticker-asset-report.sample.json"
+  },
+  "warnings": [],
+  "errors": []
+}

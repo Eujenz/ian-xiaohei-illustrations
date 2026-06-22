@@ -1,6 +1,6 @@
 ---
 name: article-visualization
-description: Article visualization, Chinese article illustration, concept illustration, textless visual prompts, overlay Chinese labels, character replacement, and future LINE sticker preparation. Use for converting Chinese articles, methodology posts, and knowledge content into hand-drawn 16:9 visual assets with deterministic text overlay. Do not use for PPT decks, commercial key visuals, vector diagrams, photo editing, or direct AI-rendered Chinese text.
+description: Article visualization, Chinese article illustration, concept illustration, textless visual prompts, overlay Chinese labels, character replacement, and LINE sticker preparation. Use for converting Chinese articles, methodology posts, knowledge content, and sticker concepts into hand-drawn visual assets with deterministic text overlay. Do not use for PPT decks, commercial key visuals, vector diagrams, photo editing, or direct AI-rendered Chinese text.
 ---
 
 Use this skill for Chinese article visualization and concept illustration.
@@ -26,3 +26,7 @@ Validate character profiles before use. Character replacement may change `manife
 v0.5 sticker preparation workflow:
 
 Sticker mode is separate from article visualization mode. Use `create_sticker_set.py` to draft sticker-set JSON and overlay JSON, `render_sticker_prompt.py` to create textless sticker prompts, and `qa_sticker_spec.py` to validate declared static sticker specs. Do not generate sticker images or export LINE ZIP packages in v0.5.
+
+v0.6 sticker asset workflow:
+
+After textless transparent PNGs exist, use `import_sticker_textless_images.py` or place files into `textless/`. Run `run_sticker_asset_pipeline.py` to apply deterministic overlays, run sticker image QA, create a contact sheet, and write a sticker asset report. This workflow does not call image generation APIs, OCR, blank-area detection, automatic label positioning, background removal, or LINE ZIP export. `overlay_text.py` remains coordinate-only and is not responsible for sticker-specific alpha preservation.

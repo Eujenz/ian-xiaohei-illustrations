@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "mode",
+    "sticker_set_id",
+    "character_id",
+    "base_dir",
+    "generated_at",
+    "summary",
+    "stickers",
+    "main_image",
+    "tab_image",
+    "contact_sheet",
+    "reports",
+    "warnings",
+    "errors"
+  ],
+  "properties": {
+    "mode": {"const": "line_sticker_set"},
+    "sticker_set_id": {"type": "string"},
+    "character_id": {"type": "string"},
+    "base_dir": {"type": "string"},
+    "generated_at": {"type": "string"},
+    "summary": {
+      "type": "object",
+      "required": [
+        "sticker_count",
+        "textless_found_count",
+        "final_generated_count",
+        "image_qa_passed_count",
+        "image_qa_failed_count",
+        "errors_count",
+        "warnings_count"
+      ],
+      "properties": {
+        "sticker_count": {"type": "integer"},
+        "textless_found_count": {"type": "integer"},
+        "final_generated_count": {"type": "integer"},
+        "image_qa_passed_count": {"type": "integer"},
+        "image_qa_failed_count": {"type": "integer"},
+        "errors_count": {"type": "integer"},
+        "warnings_count": {"type": "integer"}
+      }
+    },
+    "stickers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "textless_image", "final_image", "overlay_file", "prompt_file", "qa_image_report", "status"]
+      }
+    },
+    "main_image": {"type": "object"},
+    "tab_image": {"type": "object"},
+    "contact_sheet": {"type": ["string", "null"]},
+    "reports": {"type": "object"},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "errors": {"type": "array", "items": {"type": "string"}}
+  }
+}
