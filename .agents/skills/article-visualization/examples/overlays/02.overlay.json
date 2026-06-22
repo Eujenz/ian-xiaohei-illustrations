@@ -1,0 +1,8 @@
+{
+  "shot_id": "02",
+  "canvas": {"width": 1536, "height": 864, "target_ratio": "16:9"},
+  "labels": [
+    {"id": "label_01", "text": "前站", "anchor": "left_station", "placeholder": "blank sign above the left workstation", "x": 315, "y": 170, "box_width": 130, "box_height": 54, "font_size": 30, "rotation": -2, "align": "center", "style": "plain", "max_chars": 8},
+    {"id": "label_02", "text": "下一步", "anchor": "right_station", "placeholder": "blank sign above the right workstation", "x": 1040, "y": 170, "box_width": 150, "box_height": 54, "font_size": 30, "rotation": 2, "align": "center", "style": "plain", "max_chars": 8}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "shot_id": "01",
+  "canvas": {"width": 1536, "height": 864, "target_ratio": "16:9"},
+  "labels": [
+    {"id": "label_01", "text": "雜訊", "anchor": "messy_inputs", "placeholder": "blank handwritten note near messy input scraps", "x": 245, "y": 168, "box_width": 140, "box_height": 58, "font_size": 32, "rotation": -4, "align": "center", "style": "handwritten_note", "max_chars": 8},
+    {"id": "label_02", "text": "判斷", "anchor": "clear_output", "placeholder": "blank callout beside the clear output block", "x": 1080, "y": 232, "box_width": 140, "box_height": 58, "font_size": 32, "rotation": 3, "align": "center", "style": "callout", "max_chars": 8}
+  ]
+}

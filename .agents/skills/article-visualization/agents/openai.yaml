@@ -1,0 +1,6 @@
+interface:
+  display_name: "Article Visualization"
+  short_description: "Textless-first Chinese article illustration workflow with deterministic overlay labels."
+  default_prompt: "Use this skill to turn Chinese articles, concepts, and future sticker ideas into textless visual prompts plus overlay-ready final assets."
+policy:
+  allow_implicit_invocation: true

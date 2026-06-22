@@ -1,0 +1,52 @@
+{
+  "character_id": "default",
+  "display_name": "Default Square Worker",
+  "visual_identity": "small solid rounded square body, two tiny white dot eyes, two thin legs, slightly shaky black hand-drawn line, serious quiet slightly absurd worker energy",
+  "core_role": "A working participant inside the concept, never a decorative mascot.",
+  "action_library": [
+    {"id": "carry", "best_for": ["filtering", "concept_metaphor"], "prompt_snippet": "The character carries a heavy bundle of mixed paper scraps into the scene."},
+    {"id": "pull", "best_for": ["workflow", "map_route"], "prompt_snippet": "The character pulls a rope connected to the main mechanism."},
+    {"id": "sort", "best_for": ["filtering", "system_local"], "prompt_snippet": "The character sorts small blocks into simple physical piles."},
+    {"id": "repair", "best_for": ["before_after", "method_layering"], "prompt_snippet": "The character repairs a patched low-tech machine with a tiny wrench."},
+    {"id": "handoff", "best_for": ["handoff", "workflow"], "prompt_snippet": "The character hands a small parcel to the next station."}
+  ],
+  "deformation_defaults": {
+    "allow_deformation_by_default": false,
+    "allowed_in_sticker_mode": false,
+    "requires_explicit_trigger": true
+  },
+  "deformation_rules": [
+    {
+      "id": "funnel_body",
+      "allowed": true,
+      "trigger": {"structure_type": ["concept_metaphor"], "anchor_type": ["filtering"]},
+      "description": "The square body gently becomes a recognizable funnel shape.",
+      "max_intensity": "medium",
+      "prompt_snippet": "Conditionally deform the square worker into a simple recognizable funnel-like body while keeping the two white dot eyes and thin legs."
+    },
+    {
+      "id": "stuck_in_machine",
+      "allowed": true,
+      "trigger": {"structure_type": ["system_local"], "anchor_type": ["machine"]},
+      "description": "The worker is partially stuck in a simple machine.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the square worker lightly stuck in the machine, still recognizable."
+    },
+    {
+      "id": "compressed_flat",
+      "allowed": true,
+      "trigger": {"structure_type": ["before_after"], "anchor_type": ["pressure"]},
+      "description": "The worker is compressed flat by pressure.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the square worker mildly compressed flat, still recognizable."
+    }
+  ],
+  "negative_rules": [
+    "no complex clothing",
+    "no mascot poses",
+    "no corner decoration",
+    "no children's cartoon style",
+    "no full-color corporate mascot treatment",
+    "no unrecognizable deformation"
+  ]
+}

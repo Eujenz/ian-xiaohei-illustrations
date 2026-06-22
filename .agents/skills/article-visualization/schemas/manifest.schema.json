@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["mode", "article_slug", "style_profile", "character_id", "text_strategy", "shots"],
+  "additionalProperties": true,
+  "properties": {
+    "mode": {"type": "string"},
+    "article_slug": {"type": "string"},
+    "style_profile": {"type": "object"},
+    "character_id": {"type": "string"},
+    "text_strategy": {"const": "overlay_after_generation"},
+    "shots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "placement", "anchor_type", "theme", "core_idea", "structure_type", "metaphor", "character_action", "visual_prompt_file", "overlay_file", "textless_image", "final_image", "qa_status"],
+        "properties": {
+          "id": {"type": "string"},
+          "placement": {"type": "string"},
+          "anchor_type": {"type": "string"},
+          "theme": {"type": "string"},
+          "core_idea": {"type": "string"},
+          "structure_type": {"enum": ["workflow", "system_local", "before_after", "character_state", "concept_metaphor", "method_layering", "map_route", "comic_sequence"]},
+          "metaphor": {"type": "string"},
+          "character_action": {"type": "string"},
+          "visual_prompt_file": {"type": "string"},
+          "overlay_file": {"type": "string"},
+          "textless_image": {"type": "string"},
+          "final_image": {"type": "string"},
+          "qa_status": {"enum": ["pending", "prompt_ready", "waiting_for_textless_image", "text_pass", "done", "failed"]}
+        }
+      }
+    }
+  }
+}

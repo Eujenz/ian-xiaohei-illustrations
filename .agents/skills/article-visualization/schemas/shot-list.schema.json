@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","description":"Future v0.2 shot planner schema; not v0.1 source of truth.","properties":{"shots":{"type":"array"}}}
