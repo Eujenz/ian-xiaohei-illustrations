@@ -1,22 +1,84 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["character_id", "display_name", "visual_identity", "core_role", "action_library", "deformation_rules", "deformation_defaults", "negative_rules"],
+  "required": [
+    "character_id",
+    "display_name",
+    "visual_identity",
+    "core_role",
+    "action_library",
+    "deformation_rules",
+    "deformation_defaults",
+    "negative_rules"
+  ],
+  "additionalProperties": true,
   "properties": {
-    "character_id": {"type": "string"},
-    "display_name": {"type": "string"},
-    "visual_identity": {"type": "string"},
-    "core_role": {"type": "string"},
-    "action_library": {"type": "array"},
-    "deformation_defaults": {"type": "object"},
-    "negative_rules": {"type": "array"},
+    "character_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visual_identity": {
+      "type": "object",
+      "required": ["base_silhouette", "eyes", "line_style", "default_pose_language"],
+      "properties": {
+        "base_silhouette": {"type": "string", "minLength": 1},
+        "eyes": {"type": "string", "minLength": 1},
+        "line_style": {"type": "string", "minLength": 1},
+        "default_pose_language": {"type": "string", "minLength": 1}
+      }
+    },
+    "core_role": {
+      "type": "object",
+      "required": ["description", "must_be_core_actor", "forbidden_role"],
+      "properties": {
+        "description": {"type": "string", "minLength": 1},
+        "must_be_core_actor": {"const": true},
+        "forbidden_role": {"type": "string", "minLength": 1}
+      }
+    },
+    "action_library": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "best_for"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "description": {"type": "string", "minLength": 1},
+          "best_for": {"type": "array", "items": {"type": "string"}},
+          "prompt_snippet": {"type": "string"}
+        }
+      }
+    },
+    "deformation_defaults": {
+      "type": "object",
+      "required": [
+        "allow_deformation_by_default",
+        "allowed_in_sticker_mode",
+        "requires_explicit_trigger"
+      ],
+      "properties": {
+        "allow_deformation_by_default": {"type": "boolean"},
+        "allowed_in_sticker_mode": {"type": "boolean"},
+        "requires_explicit_trigger": {"type": "boolean"}
+      }
+    },
+    "negative_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
     "deformation_rules": {
       "type": "array",
       "items": {
         "type": "object",
         "required": ["id", "allowed", "trigger", "description", "max_intensity", "prompt_snippet"],
         "properties": {
-          "id": {"type": "string"},
+          "id": {"type": "string", "minLength": 1},
           "allowed": {"type": "boolean"},
           "trigger": {
             "type": "object",
@@ -26,9 +88,9 @@
               "anchor_type": {"type": "array", "items": {"type": "string"}}
             }
           },
-          "description": {"type": "string"},
+          "description": {"type": "string", "minLength": 1},
           "max_intensity": {"enum": ["low", "medium", "high"]},
-          "prompt_snippet": {"type": "string"}
+          "prompt_snippet": {"type": "string", "minLength": 1}
         }
       }
     }

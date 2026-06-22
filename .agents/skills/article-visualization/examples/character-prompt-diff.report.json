@@ -1,0 +1,21 @@
+{
+  "compared_count": 2,
+  "changed_prompts": [
+    "01",
+    "02"
+  ],
+  "missing_original": [],
+  "missing_swapped": [
+    "03",
+    "04",
+    "05"
+  ],
+  "checks": {
+    "swapped_differs_from_original": true,
+    "textless_instruction_preserved": true,
+    "placeholder_block_preserved": true,
+    "no_overlay_label_leak": true
+  },
+  "warnings": [],
+  "errors": []
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.4.0
+
+- Added character profile validation with deterministic schema and business-rule checks.
+- Added character discovery, safe template creation, manifest character swapping, and prompt comparison tools.
+- Added generic `sample-alt` character profile.
+- Hardened character prompt rendering while preserving textless-first and overlay-only contracts.
+- Added character replacement documentation and pytest coverage.
+
 ## v0.3.0
 
 - Added v0.3 contract audit report.

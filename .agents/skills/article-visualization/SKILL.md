@@ -18,3 +18,7 @@ Preserve the pipeline contract:
 v0.3 post-generation workflow:
 
 After users paste generated visual prompts into an image tool and save textless PNGs, use `import_textless_images.py` or place files into `textless/`. Then run `run_asset_pipeline.py` to apply deterministic overlays, QA text, create a contact sheet, and export final assets.
+
+v0.4 character replacement workflow:
+
+Validate character profiles before use. Character replacement may change `manifest.character_id`, per-shot character IDs when explicitly requested, and regenerated visual prompts. It must not change overlay JSON, overlay label text, overlay coordinates, textless images, final images, article source, shot core ideas, metaphors, structure types, or anchor types.

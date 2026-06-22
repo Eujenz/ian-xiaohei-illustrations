@@ -1,0 +1,122 @@
+{
+  "character_id": "sample-alt",
+  "display_name": "Sample Alt",
+  "visual_identity": {
+    "base_silhouette": "small pebble-like body with short stick arms",
+    "eyes": "two tiny dot eyes",
+    "line_style": "simple black hand-drawn line",
+    "default_pose_language": "quiet, focused operator energy"
+  },
+  "core_role": {
+    "description": "A generic abstract operator that participates in the main visual action.",
+    "must_be_core_actor": true,
+    "forbidden_role": "decorative mascot, branded IP, or background ornament"
+  },
+  "action_library": [
+    {
+      "id": "carry",
+      "description": "Carry raw material into the visual mechanism.",
+      "best_for": [
+        "concept_metaphor",
+        "filtering"
+      ],
+      "prompt_snippet": "The pebble operator carries raw material toward the main mechanism."
+    },
+    {
+      "id": "pull",
+      "description": "Pull a rope, handle, or simple lever.",
+      "best_for": [
+        "workflow",
+        "map_route"
+      ],
+      "prompt_snippet": "The pebble operator pulls a simple rope connected to the workflow."
+    },
+    {
+      "id": "sort",
+      "description": "Sort notes, blocks, or tokens into piles.",
+      "best_for": [
+        "system_local",
+        "filtering"
+      ],
+      "prompt_snippet": "The pebble operator sorts small notes into clear piles."
+    },
+    {
+      "id": "point",
+      "description": "Point at the central comparison or transition.",
+      "best_for": [
+        "before_after",
+        "contrast"
+      ],
+      "prompt_snippet": "The pebble operator points at the key difference between two stations."
+    },
+    {
+      "id": "repair",
+      "description": "Repair a pipe or low-tech machine.",
+      "best_for": [
+        "bottleneck",
+        "method_layering"
+      ],
+      "prompt_snippet": "The pebble operator repairs a small low-tech machine."
+    }
+  ],
+  "deformation_defaults": {
+    "allow_deformation_by_default": false,
+    "allowed_in_sticker_mode": false,
+    "requires_explicit_trigger": true
+  },
+  "deformation_rules": [
+    {
+      "id": "pebble_funnel",
+      "allowed": true,
+      "trigger": {
+        "structure_type": [
+          "concept_metaphor"
+        ],
+        "anchor_type": [
+          "filtering"
+        ]
+      },
+      "description": "The pebble body becomes a simple funnel while remaining recognizable.",
+      "max_intensity": "medium",
+      "prompt_snippet": "Conditionally deform the pebble operator into a simple funnel-like body while keeping the tiny dot eyes and stick arms."
+    },
+    {
+      "id": "wedged_in_pipe",
+      "allowed": true,
+      "trigger": {
+        "structure_type": [
+          "system_local"
+        ],
+        "anchor_type": [
+          "bottleneck"
+        ]
+      },
+      "description": "The operator is gently wedged in a pipe-shaped bottleneck.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the pebble operator lightly wedged inside a pipe-shaped bottleneck, still recognizable."
+    },
+    {
+      "id": "flattened_note",
+      "allowed": true,
+      "trigger": {
+        "structure_type": [
+          "character_state"
+        ],
+        "anchor_type": [
+          "overload"
+        ]
+      },
+      "description": "The pebble operator is flattened like a note under overload.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the pebble operator mildly flattened like a note, still recognizable."
+    }
+  ],
+  "negative_rules": [
+    "no branded character treatment",
+    "no complex clothing",
+    "no cute mascot pose",
+    "no corner decoration",
+    "no children's cartoon style",
+    "no unrecognizable deformation"
+  ]
+}

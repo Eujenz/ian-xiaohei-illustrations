@@ -1,14 +1,48 @@
 {
   "character_id": "default",
   "display_name": "Default Square Worker",
-  "visual_identity": "small solid rounded square body, two tiny white dot eyes, two thin legs, slightly shaky black hand-drawn line, serious quiet slightly absurd worker energy",
-  "core_role": "A working participant inside the concept, never a decorative mascot.",
+  "visual_identity": {
+    "base_silhouette": "small solid rounded square body with two thin legs",
+    "eyes": "two tiny white dot eyes",
+    "line_style": "slightly shaky black hand-drawn line",
+    "default_pose_language": "serious, quiet, slightly absurd worker energy"
+  },
+  "core_role": {
+    "description": "A working participant inside the concept.",
+    "must_be_core_actor": true,
+    "forbidden_role": "decorative mascot, corner decoration, or idle observer"
+  },
   "action_library": [
-    {"id": "carry", "best_for": ["filtering", "concept_metaphor"], "prompt_snippet": "The character carries a heavy bundle of mixed paper scraps into the scene."},
-    {"id": "pull", "best_for": ["workflow", "map_route"], "prompt_snippet": "The character pulls a rope connected to the main mechanism."},
-    {"id": "sort", "best_for": ["filtering", "system_local"], "prompt_snippet": "The character sorts small blocks into simple physical piles."},
-    {"id": "repair", "best_for": ["before_after", "method_layering"], "prompt_snippet": "The character repairs a patched low-tech machine with a tiny wrench."},
-    {"id": "handoff", "best_for": ["handoff", "workflow"], "prompt_snippet": "The character hands a small parcel to the next station."}
+    {
+      "id": "carry",
+      "description": "Carry heavy mixed material into the main visual mechanism.",
+      "best_for": ["filtering", "concept_metaphor"],
+      "prompt_snippet": "The character carries a heavy bundle of mixed paper scraps into the scene."
+    },
+    {
+      "id": "pull",
+      "description": "Pull a rope or lever connected to a low-tech mechanism.",
+      "best_for": ["workflow", "map_route"],
+      "prompt_snippet": "The character pulls a rope connected to the main mechanism."
+    },
+    {
+      "id": "sort",
+      "description": "Sort small blocks or notes into physical piles.",
+      "best_for": ["filtering", "system_local"],
+      "prompt_snippet": "The character sorts small blocks into simple physical piles."
+    },
+    {
+      "id": "repair",
+      "description": "Repair a patched machine that represents a local system problem.",
+      "best_for": ["before_after", "method_layering"],
+      "prompt_snippet": "The character repairs a patched low-tech machine with a tiny wrench."
+    },
+    {
+      "id": "handoff",
+      "description": "Hand a parcel or note to the next station.",
+      "best_for": ["handoff", "workflow"],
+      "prompt_snippet": "The character hands a small parcel to the next station."
+    }
   ],
   "deformation_defaults": {
     "allow_deformation_by_default": false,

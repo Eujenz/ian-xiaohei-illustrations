@@ -27,10 +27,11 @@ def render_visual_prompt(shot: dict, character: dict, style: dict, policy: dict,
     action = resolve_action(shot, character)
     deformation = resolve_deformation(shot, character, policy.get("mode", "article_visualization"))
     deformation_block = deformation["prompt_snippet"] if deformation else "No character deformation for this shot."
+    action_text = action.get("prompt_snippet") or action.get("description") or f"The character performs: {action.get('id', 'act')}."
     return "\n\n".join([
         "## 1. Canvas spec\n16:9 horizontal article illustration, 1536x864 canvas, mostly white background.",
         f"## 2. Scene concept\nTheme: {shot.get('theme')}. Core idea: {shot.get('core_idea')}. Use a low-tech physical metaphor: {shot.get('metaphor')}.",
-        f"## 3. Character block\n{get_prompt_snippet(character)} Action: {action.get('prompt_snippet')}",
+        f"## 3. Character block\n{get_prompt_snippet(character)} Action: {action_text}",
         f"## 4. Conditional deformation block\n{deformation_block}",
         "## 5. Text strategy block\nDo not render readable Chinese text. Leave blank placeholders for labels that will be added later by overlay_text.py.",
         f"## 6. Blank label placeholder block\n{build_label_placeholders(labels)}",

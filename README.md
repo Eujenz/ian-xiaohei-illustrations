@@ -195,6 +195,17 @@ python .agents/skills/article-visualization/scripts/create_contact_sheet.py --im
 python .agents/skills/article-visualization/scripts/export_article_assets.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --output .agents/skills/article-visualization/examples/generated/my-article/export/my-article-assets.zip
 ```
 
+Use the v0.4 character replacement tools:
+
+```bash
+python .agents/skills/article-visualization/scripts/validate_character_profile.py --character .agents/skills/article-visualization/characters/default/character.json
+python .agents/skills/article-visualization/scripts/list_characters.py --characters-dir .agents/skills/article-visualization/characters
+python .agents/skills/article-visualization/scripts/create_character_profile.py --characters-dir .agents/skills/article-visualization/characters --character-id sample-alt --display-name "Sample Alt" --output-dir .agents/skills/article-visualization/characters/sample-alt --force
+python .agents/skills/article-visualization/scripts/swap_character.py --manifest .agents/skills/article-visualization/examples/manifest.sample.json --character-id sample-alt --output .agents/skills/article-visualization/examples/manifest.character-swap.sample.json --prompt-output-dir .agents/skills/article-visualization/examples/prompts-character-swap
+python .agents/skills/article-visualization/scripts/run_pipeline.py --article-dir .agents/skills/article-visualization/examples --manifest manifest.character-swap.sample.json --force
+python .agents/skills/article-visualization/scripts/compare_character_prompts.py --original-dir .agents/skills/article-visualization/examples/prompts --swapped-dir .agents/skills/article-visualization/examples/prompts-character-swap --output .agents/skills/article-visualization/examples/character-prompt-diff.report.json --overlay-dir .agents/skills/article-visualization/examples/overlays
+```
+
 Notes:
 
 - No image generation API is called in v0.1.

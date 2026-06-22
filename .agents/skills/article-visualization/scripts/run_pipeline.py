@@ -20,11 +20,14 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run(article_dir: str, force: bool = False, font: str | None = None) -> dict:
+def run(article_dir: str, force: bool = False, font: str | None = None, manifest_name: str | None = None) -> dict:
     base = Path(article_dir)
-    manifest_path = base / "manifest.sample.json"
-    if not manifest_path.exists():
-        manifest_path = base / "manifest.json"
+    if manifest_name:
+        manifest_path = base / manifest_name
+    else:
+        manifest_path = base / "manifest.sample.json"
+        if not manifest_path.exists():
+            manifest_path = base / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     character = json.loads((ROOT / "characters" / manifest.get("character_id", "default") / "character.json").read_text(encoding="utf-8"))
     blocking = validate_manifest_schema(manifest) + validate_shot_list(manifest) + check_all_files_exist(manifest, str(base))
@@ -61,11 +64,12 @@ def run(article_dir: str, force: bool = False, font: str | None = None) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--article-dir", required=True)
+    parser.add_argument("--manifest")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--font")
     args = parser.parse_args()
     try:
-        summary = run(args.article_dir, args.force, args.font)
+        summary = run(args.article_dir, args.force, args.font, args.manifest)
     except Exception as exc:
         print(f"run_pipeline failed: {exc}")
         return 1

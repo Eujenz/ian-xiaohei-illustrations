@@ -1,0 +1,48 @@
+{
+  "mode": "article_visualization",
+  "article_slug": "sample-filter-handoff",
+  "character_id": "sample-alt",
+  "text_strategy": "overlay_after_generation",
+  "style_profile": {
+    "canvas": "16:9 horizontal article illustration",
+    "line": "hand-drawn black line art",
+    "background": "mostly white background"
+  },
+  "shots": [
+    {
+      "id": "01",
+      "placement": "hero",
+      "anchor_type": "filtering",
+      "theme": "judgment from noisy material",
+      "core_idea": "filtering noisy material into useful judgment",
+      "structure_type": "concept_metaphor",
+      "metaphor": "a low-tech funnel sorting messy scraps into one clear block",
+      "character_action": "carry",
+      "visual_prompt_file": "prompts-character-swap/01.visual.md",
+      "overlay_file": "overlays/01.overlay.json",
+      "textless_image": "textless/01.textless.png",
+      "final_image": "final/01.final.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "02",
+      "placement": "body",
+      "anchor_type": "handoff",
+      "theme": "transition into action",
+      "core_idea": "handoff from judgment to next action",
+      "structure_type": "workflow",
+      "metaphor": "two simple workstations passing a parcel",
+      "character_action": "handoff",
+      "visual_prompt_file": "prompts-character-swap/02.visual.md",
+      "overlay_file": "overlays/02.overlay.json",
+      "textless_image": "textless/02.textless.png",
+      "final_image": "final/02.final.png",
+      "qa_status": "pending"
+    }
+  ],
+  "character_replacement": {
+    "source_character_id": "default",
+    "target_character_id": "sample-alt",
+    "created_by": "swap_character.py"
+  }
+}
