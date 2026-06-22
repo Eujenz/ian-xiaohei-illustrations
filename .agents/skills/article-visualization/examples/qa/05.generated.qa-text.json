@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": {
+    "all_text_non_empty": true,
+    "simple_typo_heuristic": true,
+    "label_length": true,
+    "text_in_bounds": true
+  },
+  "warnings": [
+    "Simple heuristic only; this is not a full spell-check."
+  ],
+  "errors": []
+}

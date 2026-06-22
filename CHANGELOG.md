@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.2.0
+
+- Added deterministic Markdown article shot planner scaffold.
+- Added `create_shot_list.py` for heuristic shot-list generation without LLMs or external APIs.
+- Added `create_manifest_draft.py` for manifest draft and overlay JSON draft generation.
+- Added `run_article_planning.py` to generate shot list, manifest, overlays, prompts, and text QA reports.
+- Updated `shot-list.schema.json` for v0.2 planner output.
+- Added generated example shot list, manifest, overlays, visual prompts, and QA reports.
+- Added pytest coverage for planner heuristics, manifest draft generation, generated overlays, prompt textless contract, and planning runner.
+
 ## v0.1.0
 
 - Added repo-scoped `article-visualization` Codex Skill scaffold under `.agents/skills/article-visualization/`.

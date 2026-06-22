@@ -180,6 +180,12 @@ Run tests:
 python -m pytest .agents/skills/article-visualization/tests
 ```
 
+Generate a v0.2 deterministic shot-list and manifest draft from a Markdown article:
+
+```bash
+python .agents/skills/article-visualization/scripts/run_article_planning.py --article .agents/skills/article-visualization/examples/article.sample.md --output-dir .agents/skills/article-visualization/examples --article-slug sample-article --character-id default --max-shots 5
+```
+
 Notes:
 
 - No image generation API is called in v0.1.

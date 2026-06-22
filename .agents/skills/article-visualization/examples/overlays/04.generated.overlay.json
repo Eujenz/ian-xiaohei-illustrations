@@ -1,0 +1,40 @@
+{
+  "shot_id": "04",
+  "canvas": {
+    "width": 1536,
+    "height": 864,
+    "target_ratio": "16:9"
+  },
+  "labels": [
+    {
+      "id": "label_01",
+      "text": "舊法",
+      "anchor": "primary_anchor",
+      "placeholder": "blank note near the primary visual anchor",
+      "x": 280,
+      "y": 190,
+      "box_width": 150,
+      "box_height": 58,
+      "font_size": 30,
+      "rotation": -3,
+      "align": "center",
+      "style": "handwritten_note",
+      "max_chars": 8
+    },
+    {
+      "id": "label_02",
+      "text": "新法",
+      "anchor": "secondary_anchor",
+      "placeholder": "blank callout near the secondary visual anchor",
+      "x": 970,
+      "y": 190,
+      "box_width": 150,
+      "box_height": 58,
+      "font_size": 30,
+      "rotation": 3,
+      "align": "center",
+      "style": "callout",
+      "max_chars": 8
+    }
+  ]
+}

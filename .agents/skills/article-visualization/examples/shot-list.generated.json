@@ -1,0 +1,145 @@
+{
+  "article_slug": "sample-article",
+  "shots": [
+    {
+      "id": "01",
+      "placement": "hero",
+      "source_heading": "Textless-first 文章配圖方法",
+      "source_excerpt": "很多中文文章配圖不是缺畫面，而是缺一個穩定流程。不能把中文標籤交給圖像模型直接畫，因為錯字、幻覺標題和多餘貼紙語會讓整張圖失控。",
+      "anchor_type": "process",
+      "structure_type": "workflow",
+      "theme": "Textless-first 文章配圖方法",
+      "core_idea": "很多中文文章配圖不是缺畫面，而是缺一個穩定流程。不能把中文標籤交給圖像模型直接畫，因為錯字、幻覺標題和多餘貼紙語會讓整張圖失控。",
+      "metaphor": "a low-tech conveyor path moving from article notes to a blank image and then to labeled output",
+      "character_action": "handoff",
+      "overlay_labels": [
+        {
+          "id": "label_01",
+          "text": "前段",
+          "anchor": "primary_anchor",
+          "placeholder": "blank note near the primary visual anchor",
+          "max_chars": 8
+        },
+        {
+          "id": "label_02",
+          "text": "後段",
+          "anchor": "secondary_anchor",
+          "placeholder": "blank callout near the secondary visual anchor",
+          "max_chars": 8
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "placement": "body",
+      "source_heading": "對比：不是把字畫進去",
+      "source_excerpt": "傳統做法是要求模型在畫面裡寫上「結論」「下一步」這類詞。但更穩的做法是先生成沒有可讀中文的圖，再用 overlay JSON 把文字放到明確座標。這不是 A 好 B 壞，而是把不穩定的部分從生成階段拆出來。",
+      "anchor_type": "process",
+      "structure_type": "workflow",
+      "theme": "對比：不是把字畫進去",
+      "core_idea": "傳統做法是要求模型在畫面裡寫上「結論」「下一步」這類詞。但更穩的做法是先生成沒有可讀中文的圖，再用 overlay JSON 把文字放到明確座標。這不是 A 好 B 壞，而是把不穩",
+      "metaphor": "a low-tech conveyor path moving from article notes to a blank image and then to labeled output",
+      "character_action": "handoff",
+      "overlay_labels": [
+        {
+          "id": "label_01",
+          "text": "前段",
+          "anchor": "primary_anchor",
+          "placeholder": "blank note near the primary visual anchor",
+          "max_chars": 8
+        },
+        {
+          "id": "label_02",
+          "text": "後段",
+          "anchor": "secondary_anchor",
+          "placeholder": "blank callout near the secondary visual anchor",
+          "max_chars": 8
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "placement": "body",
+      "source_heading": "流程：先圖像，後文字",
+      "source_excerpt": "pipeline 可以很簡單：先讀文章，找出值得視覺化的段落，產生 shot list，再生成 textless visual prompt，接著供應或產生無字圖片，最後用 overlay_text.py 疊上中文標籤。",
+      "anchor_type": "process",
+      "structure_type": "workflow",
+      "theme": "流程：先圖像，後文字",
+      "core_idea": "pipeline 可以很簡單：先讀文章，找出值得視覺化的段落，產生 shot list，再生成 textless visual prompt，接著供應或產生無字圖片，最後用 ove",
+      "metaphor": "a low-tech conveyor path moving from article notes to a blank image and then to labeled output",
+      "character_action": "handoff",
+      "overlay_labels": [
+        {
+          "id": "label_01",
+          "text": "前段",
+          "anchor": "primary_anchor",
+          "placeholder": "blank note near the primary visual anchor",
+          "max_chars": 8
+        },
+        {
+          "id": "label_02",
+          "text": "後段",
+          "anchor": "secondary_anchor",
+          "placeholder": "blank callout near the secondary visual anchor",
+          "max_chars": 8
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "placement": "body",
+      "source_heading": "系統瓶頸：文字渲染是一台卡住的機器",
+      "source_excerpt": "真正的瓶頸不是畫不出圖，而是模型常把短標籤渲染成錯字。這個系統局部需要被隔離：圖像模型只負責低科技隱喻和留白，文字渲染交給 deterministic renderer。",
+      "anchor_type": "contrast",
+      "structure_type": "before_after",
+      "theme": "系統瓶頸：文字渲染是一台卡住的機器",
+      "core_idea": "真正的瓶頸不是畫不出圖，而是模型常把短標籤渲染成錯字。這個系統局部需要被隔離：圖像模型只負責低科技隱喻和留白，文字渲染交給 deterministic renderer。",
+      "metaphor": "two worktables comparing unstable in-image text with stable overlay labels",
+      "character_action": "sort",
+      "overlay_labels": [
+        {
+          "id": "label_01",
+          "text": "舊法",
+          "anchor": "primary_anchor",
+          "placeholder": "blank note near the primary visual anchor",
+          "max_chars": 8
+        },
+        {
+          "id": "label_02",
+          "text": "新法",
+          "anchor": "secondary_anchor",
+          "placeholder": "blank callout near the secondary visual anchor",
+          "max_chars": 8
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "placement": "body",
+      "source_heading": "方法分層：schema、policy、QA",
+      "source_excerpt": "方法要分層：schema 定義 manifest 和 overlay，policy 禁止 OCR 與自動定位，QA 檢查文字是否越界、是否空白、是否過長。每一層只做自己的工作。",
+      "anchor_type": "layering",
+      "structure_type": "method_layering",
+      "theme": "方法分層：schema、policy、QA",
+      "core_idea": "方法要分層：schema 定義 manifest 和 overlay，policy 禁止 OCR 與自動定位，QA 檢查文字是否越界、是否空白、是否過長。每一層只做自己的工作。",
+      "metaphor": "stacked trays labeled only as blank placeholders for schema, policy, and QA layers",
+      "character_action": "stack",
+      "overlay_labels": [
+        {
+          "id": "label_01",
+          "text": "規則",
+          "anchor": "primary_anchor",
+          "placeholder": "blank note near the primary visual anchor",
+          "max_chars": 8
+        },
+        {
+          "id": "label_02",
+          "text": "檢查",
+          "anchor": "secondary_anchor",
+          "placeholder": "blank callout near the secondary visual anchor",
+          "max_chars": 8
+        }
+      ]
+    }
+  ]
+}
