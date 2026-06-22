@@ -29,6 +29,13 @@ def find_manifest(article_dir: str) -> Path:
     raise FileNotFoundError(f"No manifest found in {article_dir}")
 
 
+def safe_relative(path: Path, base: Path) -> str:
+    try:
+        return path.resolve().relative_to(base.resolve()).as_posix()
+    except ValueError:
+        return path.name
+
+
 def empty_report(article_slug: str) -> dict:
     return {
         "article_slug": article_slug,
@@ -97,13 +104,13 @@ def run_asset_pipeline(article_dir: str, font: str | None = None, force: bool = 
     if final_images:
         contact_sheet = base / "contact-sheet.png"
         create_contact_sheet(final_images, str(contact_sheet), cols=3)
-        report["contact_sheet"] = str(contact_sheet)
+        report["contact_sheet"] = safe_relative(contact_sheet, base)
 
     all_finals_exist = all((base / shot["final_image"]).exists() for shot in manifest.get("shots", []))
     if all_finals_exist:
         export_path = base / "export" / f"{manifest.get('article_slug', base.name)}-assets.zip"
         export_article_assets(str(base), str(export_path))
-        report["export_zip"] = str(export_path)
+        report["export_zip"] = safe_relative(export_path, base)
     elif report["missing_textless_images"]:
         report["warnings"].append("Asset ZIP was not exported because not all final images exist.")
 

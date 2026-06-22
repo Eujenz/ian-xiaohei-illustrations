@@ -41,6 +41,21 @@ def test_import_textless_images_matches_shot_ids_from_filenames(tmp_path):
     assert (article_dir / "textless" / "02.textless.png").exists()
 
 
+def test_import_textless_images_prefers_exact_id_and_reports_relative_paths(tmp_path):
+    article_dir = make_article_dir(tmp_path)
+    source_dir = tmp_path / "source"
+    source_dir.mkdir()
+    Image.new("RGB", (320, 180), "white").save(source_dir / "01.duplicate.png")
+    Image.new("RGB", (320, 180), "white").save(source_dir / "01.PNG")
+    Image.new("RGB", (320, 180), "white").save(source_dir / "unused.png")
+    report = import_textless_images.import_textless_images(str(article_dir), str(source_dir))
+    copied = {item["shot_id"]: item for item in report["copied"]}
+    assert copied["01"]["source"] == "01.PNG"
+    assert copied["01"]["destination"] == "textless/01.textless.png"
+    assert "01.duplicate.png" in report["skipped"]
+    assert not any(":" in value for value in [report["article_dir"], report["source_dir"], copied["01"]["destination"]])
+
+
 def test_create_contact_sheet_creates_output_png(tmp_path):
     images_dir = tmp_path / "images"
     images_dir.mkdir()
@@ -81,5 +96,9 @@ def test_run_asset_pipeline_runs_on_fixture_with_sample_textless_pngs(tmp_path):
     assert (article_dir / "final" / "01.final.png").exists()
     assert (article_dir / "contact-sheet.png").exists()
     assert report["export_zip"]
+    assert report["contact_sheet"] == "contact-sheet.png"
+    assert report["export_zip"].startswith("export/")
+    assert ":" not in report["contact_sheet"]
+    assert ":" not in report["export_zip"]
     schema = json.loads((ROOT / "schemas" / "asset-report.schema.json").read_text(encoding="utf-8"))
     assert list(Draft202012Validator(schema).iter_errors(report)) == []

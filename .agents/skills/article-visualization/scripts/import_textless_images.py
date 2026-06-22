@@ -10,6 +10,13 @@ from pathlib import Path
 IMAGE_SUFFIXES = {".png"}
 
 
+def safe_relative(path: Path, base: Path) -> str:
+    try:
+        return path.resolve().relative_to(base.resolve()).as_posix()
+    except ValueError:
+        return path.name
+
+
 def load_manifest(article_dir: str) -> tuple[Path, dict]:
     manifest_path = Path(article_dir) / "manifest.json"
     if not manifest_path.exists():
@@ -18,17 +25,23 @@ def load_manifest(article_dir: str) -> tuple[Path, dict]:
 
 
 def shot_id_from_filename(path: Path, shot_ids: set[str]) -> str | None:
+    match = shot_id_match(path, shot_ids)
+    return match[0] if match else None
+
+
+def shot_id_match(path: Path, shot_ids: set[str]) -> tuple[str, int] | None:
     stem = path.stem.lower()
     for shot_id in sorted(shot_ids):
         sid = shot_id.lower()
         patterns = [
-            rf"^{re.escape(sid)}$",
-            rf"^{re.escape(sid)}[._ -].+",
-            rf"^shot[-_ ]?{re.escape(sid)}$",
-            rf"^shot[-_ ]?{re.escape(sid)}[._ -].+",
+            (rf"^{re.escape(sid)}$", 0),
+            (rf"^shot[-_ ]?{re.escape(sid)}$", 1),
+            (rf"^{re.escape(sid)}[._ -].+", 2),
+            (rf"^shot[-_ ]?{re.escape(sid)}[._ -].+", 3),
         ]
-        if any(re.match(pattern, stem) for pattern in patterns):
-            return shot_id
+        for pattern, priority in patterns:
+            if re.match(pattern, stem):
+                return shot_id, priority
     return None
 
 
@@ -40,15 +53,21 @@ def import_textless_images(article_dir: str, source_dir: str, mode: str = "filen
     manifest_path, manifest = load_manifest(article_dir)
     shots = manifest.get("shots", [])
     shot_ids = {shot["id"] for shot in shots}
-    matches: dict[str, Path] = {}
+    matches: dict[str, tuple[int, Path]] = {}
     skipped: list[str] = []
     for image_path in sorted(source.iterdir()):
         if not image_path.is_file() or image_path.suffix.lower() not in IMAGE_SUFFIXES:
             skipped.append(str(image_path))
             continue
-        shot_id = shot_id_from_filename(image_path, shot_ids)
-        if shot_id and shot_id not in matches:
-            matches[shot_id] = image_path
+        match = shot_id_match(image_path, shot_ids)
+        if match:
+            shot_id, priority = match
+            if shot_id not in matches or priority < matches[shot_id][0]:
+                if shot_id in matches:
+                    skipped.append(str(matches[shot_id][1]))
+                matches[shot_id] = (priority, image_path)
+            else:
+                skipped.append(str(image_path))
         else:
             skipped.append(str(image_path))
     copied: list[dict] = []
@@ -58,21 +77,26 @@ def import_textless_images(article_dir: str, source_dir: str, mode: str = "filen
         shot_id = shot["id"]
         if shot_id not in matches:
             continue
+        image_path = matches[shot_id][1]
         destination = textless_dir / f"{shot_id}.textless.png"
-        shutil.copy2(matches[shot_id], destination)
+        shutil.copy2(image_path, destination)
         if "textless_image" in shot:
             shot["textless_image"] = f"textless/{shot_id}.textless.png"
-        copied.append({"shot_id": shot_id, "source": str(matches[shot_id]), "destination": str(destination)})
+        copied.append({
+            "shot_id": shot_id,
+            "source": safe_relative(image_path, source),
+            "destination": safe_relative(destination, base),
+        })
     if copied:
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     missing = [shot_id for shot_id in sorted(shot_ids) if shot_id not in matches]
     report = {
-        "article_dir": str(base),
-        "source_dir": str(source),
+        "article_dir": ".",
+        "source_dir": safe_relative(source, base),
         "mode": mode,
         "matched": sorted(matches.keys()),
         "copied": copied,
-        "skipped": skipped,
+        "skipped": [safe_relative(Path(path), source) for path in skipped],
         "missing": missing,
     }
     reports_dir = base / "reports"

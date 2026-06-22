@@ -12,6 +12,13 @@ EXCLUDED_SUFFIXES = {".pyc", ".tmp"}
 INCLUDED_DIRS = ["overlays", "prompts", "textless", "final", "qa"]
 
 
+def safe_relative(path: Path, base: Path) -> str:
+    try:
+        return path.resolve().relative_to(base.resolve()).as_posix()
+    except ValueError:
+        return path.name
+
+
 def should_include(path: Path) -> bool:
     if any(part in EXCLUDED_NAMES for part in path.parts):
         return False
@@ -48,9 +55,9 @@ def export_article_assets(article_dir: str, output: str) -> dict:
         for path in files:
             archive.write(path, path.relative_to(base).as_posix())
     report = {
-        "article_dir": str(base),
+        "article_dir": ".",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "output_zip": str(output_path),
+        "output_zip": safe_relative(output_path, base),
         "files_included": [path.relative_to(base).as_posix() for path in files],
         "warnings": [],
         "errors": [],
