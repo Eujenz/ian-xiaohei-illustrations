@@ -11,6 +11,7 @@ from conftest import load_script
 
 ROOT = Path(__file__).resolve().parents[1]
 import_textless_images = load_script("import_textless_images")
+import_native_images = load_script("import_native_images")
 create_contact_sheet = load_script("create_contact_sheet")
 export_article_assets = load_script("export_article_assets")
 run_asset_pipeline = load_script("run_asset_pipeline")
@@ -102,3 +103,29 @@ def test_run_asset_pipeline_runs_on_fixture_with_sample_textless_pngs(tmp_path):
     assert ":" not in report["export_zip"]
     schema = json.loads((ROOT / "schemas" / "asset-report.schema.json").read_text(encoding="utf-8"))
     assert list(Draft202012Validator(schema).iter_errors(report)) == []
+
+
+def test_import_native_images_and_asset_pipeline_skip_overlay_rendering(tmp_path):
+    article_dir = make_article_dir(tmp_path)
+    manifest_path = article_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["text_strategy"] = "image_text_native"
+    for shot in manifest["shots"]:
+        shot["qa_status"] = "waiting_for_native_image"
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    source_dir = tmp_path / "native-source"
+    source_dir.mkdir()
+    Image.new("RGB", (320, 180), "white").save(source_dir / "01.png")
+    Image.new("RGB", (320, 180), "white").save(source_dir / "02.png")
+
+    import_report = import_native_images.import_native_images(str(article_dir), str(source_dir))
+    assert import_report["matched"] == ["01", "02"]
+    assert (article_dir / "final" / "01.final.png").exists()
+
+    report = run_asset_pipeline.run_asset_pipeline(str(article_dir), force=True)
+    assert report["shots_total"] == 2
+    assert report["overlays_validated"] == 0
+    assert report["finals_generated"] == 0
+    assert report["finals_skipped"] == 2
+    assert report["contact_sheet"] == "contact-sheet.png"
+    assert report["export_zip"].startswith("export/")

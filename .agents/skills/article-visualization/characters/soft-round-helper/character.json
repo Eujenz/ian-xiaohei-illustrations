@@ -1,0 +1,88 @@
+{
+  "character_id": "soft-round-helper",
+  "display_name": "Soft Round Helper",
+  "visual_identity": {
+    "base_silhouette": "small original soft round creature with a bean-like body, tiny rounded ears, short arms, and tiny feet",
+    "eyes": "two simple dot eyes with a small focused mouth",
+    "line_style": "soft blue-gray colored-pencil outline with pale blue-white fill",
+    "default_pose_language": "gentle, earnest, slightly tiny-worker energy; warm but focused"
+  },
+  "core_role": {
+    "description": "An original soft round helper that actively operates the main task mechanism.",
+    "must_be_core_actor": true,
+    "forbidden_role": "decorative mascot, branded character imitation, idle cute pose, or corner ornament"
+  },
+  "action_library": [
+    {
+      "id": "dispatch",
+      "description": "Dispatch small helper agents to task stations.",
+      "best_for": ["workflow", "system_local"],
+      "prompt_snippet": "The soft round helper dispatches small helper agents from a tiny task desk into the workflow."
+    },
+    {
+      "id": "sort",
+      "description": "Sort papers, tokens, or task cards into calm blue-white piles.",
+      "best_for": ["filtering", "concept_metaphor"],
+      "prompt_snippet": "The soft round helper sorts task cards into calm blue-white piles."
+    },
+    {
+      "id": "connect",
+      "description": "Connect task rails, inboxes, or small system pipes.",
+      "best_for": ["process", "map_route"],
+      "prompt_snippet": "The soft round helper connects small task rails and inboxes across the scene."
+    },
+    {
+      "id": "inspect",
+      "description": "Inspect an exception marker or task output with a tiny pencil.",
+      "best_for": ["contrast", "before_after"],
+      "prompt_snippet": "The soft round helper inspects the key difference or exception marker with a tiny pencil."
+    },
+    {
+      "id": "build",
+      "description": "Build a tiny working prototype from simple paper and machine parts.",
+      "best_for": ["method_layering", "character_state"],
+      "prompt_snippet": "The soft round helper builds a tiny working prototype from paper cards and soft machine parts."
+    }
+  ],
+  "deformation_defaults": {
+    "allow_deformation_by_default": false,
+    "allowed_in_sticker_mode": false,
+    "requires_explicit_trigger": true
+  },
+  "deformation_rules": [
+    {
+      "id": "paper-funnel-body",
+      "allowed": true,
+      "trigger": {"structure_type": ["concept_metaphor"], "anchor_type": ["filtering"]},
+      "description": "The helper gently becomes a paper-funnel shape while staying recognizable.",
+      "max_intensity": "low",
+      "prompt_snippet": "Conditionally let the soft round helper gently become a simple paper-funnel shape while keeping dot eyes and tiny limbs recognizable."
+    },
+    {
+      "id": "inbox-nest",
+      "allowed": true,
+      "trigger": {"structure_type": ["system_local"], "anchor_type": ["bottleneck"]},
+      "description": "The helper sits inside a small inbox-like bottleneck.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the soft round helper sitting inside a small inbox-like bottleneck, still clearly recognizable."
+    },
+    {
+      "id": "card-stack-squish",
+      "allowed": true,
+      "trigger": {"structure_type": ["before_after"], "anchor_type": ["pressure"]},
+      "description": "The helper is gently squished by a stack of task cards.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the soft round helper gently squished by a stack of task cards while keeping a warm focused expression."
+    }
+  ],
+  "negative_rules": [
+    "no branded character treatment",
+    "no Chiikawa likeness",
+    "no official mascot reproduction",
+    "no complex clothing",
+    "no corner decoration",
+    "no idle cute pose",
+    "no children's cartoon poster style",
+    "no unrecognizable deformation"
+  ]
+}

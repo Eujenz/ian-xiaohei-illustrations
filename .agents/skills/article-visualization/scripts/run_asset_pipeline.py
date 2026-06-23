@@ -59,6 +59,35 @@ def write_report(article_dir: str, report: dict) -> Path:
     return report_path
 
 
+def finalize_assets(base: Path, manifest: dict, report: dict) -> None:
+    final_images = collect_images(str(base / "final"))
+    if final_images:
+        contact_sheet = base / "contact-sheet.png"
+        create_contact_sheet(final_images, str(contact_sheet), cols=3)
+        report["contact_sheet"] = safe_relative(contact_sheet, base)
+
+    all_finals_exist = all((base / shot["final_image"]).exists() for shot in manifest.get("shots", []))
+    if all_finals_exist:
+        export_path = base / "export" / f"{manifest.get('article_slug', base.name)}-assets.zip"
+        export_article_assets(str(base), str(export_path))
+        report["export_zip"] = safe_relative(export_path, base)
+
+
+def run_native_text_asset_pipeline(base: Path, manifest: dict, report: dict) -> None:
+    missing_final_images: list[str] = []
+    for shot in manifest.get("shots", []):
+        final_path = base / shot["final_image"]
+        if final_path.exists():
+            report["finals_skipped"] += 1
+        else:
+            missing_final_images.append(shot["id"])
+    if missing_final_images:
+        report["errors"].extend(f"{shot_id}: missing native final image: {next(shot['final_image'] for shot in manifest['shots'] if shot['id'] == shot_id)}" for shot_id in missing_final_images)
+        report["warnings"].append("Native-text mode expects externally generated final images that already contain handwritten Chinese labels.")
+        return
+    finalize_assets(base, manifest, report)
+
+
 def run_asset_pipeline(article_dir: str, font: str | None = None, force: bool = False) -> dict:
     base = Path(article_dir)
     manifest_path = find_manifest(article_dir)
@@ -68,6 +97,11 @@ def run_asset_pipeline(article_dir: str, font: str | None = None, force: bool = 
     manifest_errors = validate_manifest_schema(manifest) + validate_shot_list(manifest) + check_all_files_exist(manifest, str(base))
     if manifest_errors:
         report["errors"].extend(manifest_errors)
+        write_report(article_dir, report)
+        return report
+
+    if manifest.get("text_strategy") == "image_text_native":
+        run_native_text_asset_pipeline(base, manifest, report)
         write_report(article_dir, report)
         return report
 
@@ -100,18 +134,8 @@ def run_asset_pipeline(article_dir: str, font: str | None = None, force: bool = 
             continue
         report["finals_generated"] += 1
 
-    final_images = collect_images(str(base / "final"))
-    if final_images:
-        contact_sheet = base / "contact-sheet.png"
-        create_contact_sheet(final_images, str(contact_sheet), cols=3)
-        report["contact_sheet"] = safe_relative(contact_sheet, base)
-
-    all_finals_exist = all((base / shot["final_image"]).exists() for shot in manifest.get("shots", []))
-    if all_finals_exist:
-        export_path = base / "export" / f"{manifest.get('article_slug', base.name)}-assets.zip"
-        export_article_assets(str(base), str(export_path))
-        report["export_zip"] = safe_relative(export_path, base)
-    elif report["missing_textless_images"]:
+    finalize_assets(base, manifest, report)
+    if report["missing_textless_images"]:
         report["warnings"].append("Asset ZIP was not exported because not all final images exist.")
 
     write_report(article_dir, report)

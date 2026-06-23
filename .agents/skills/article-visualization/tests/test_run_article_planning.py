@@ -21,7 +21,7 @@ def test_run_article_planning_completes_without_external_api(tmp_path):
     assert Path(summary["manifest_path"]).exists()
     assert len(summary["overlay_files"]) == summary["candidate_shots"]
     assert len(summary["prompt_files"]) == summary["candidate_shots"]
-    assert summary["image_generation"] == "skipped"
+    assert summary["image_generation"] == "external_native_text"
 
 
 def test_overlay_text_interface_remains_coordinate_renderer():

@@ -37,7 +37,13 @@ def run(article: str, output_dir: str, article_slug: str, character_id: str = "d
         overlay_path = base / shot["overlay_file"]
         overlay_paths.append(str(overlay_path))
         overlay_json = json.loads(overlay_path.read_text(encoding="utf-8"))
-        prompt = render_visual_prompt(shot, character, manifest["style_profile"], {"mode": manifest["mode"]}, overlay_json)
+        prompt = render_visual_prompt(
+            shot,
+            character,
+            manifest["style_profile"],
+            {"mode": manifest["mode"], "text_strategy": manifest["text_strategy"]},
+            overlay_json,
+        )
         prompt_path = base / shot["visual_prompt_file"]
         prompt_path.parent.mkdir(parents=True, exist_ok=True)
         prompt_path.write_text(prompt, encoding="utf-8")
@@ -54,7 +60,7 @@ def run(article: str, output_dir: str, article_slug: str, character_id: str = "d
         "overlay_files": overlay_paths,
         "prompt_files": prompt_paths,
         "qa_text_reports": qa_paths,
-        "image_generation": "skipped",
+        "image_generation": "external_native_text",
     }
 
 

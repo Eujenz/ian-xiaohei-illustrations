@@ -31,13 +31,20 @@ def test_generated_overlay_json_passes_schema_validation(tmp_path):
     assert list(validator.iter_errors(overlay_json)) == []
 
 
-def test_generated_visual_prompt_does_not_contain_overlay_chinese_labels(tmp_path):
+def test_generated_visual_prompt_uses_native_text_labels_by_default(tmp_path):
     article = (ROOT / "examples" / "article.sample.md").read_text(encoding="utf-8")
     shot_list = create_shot_list.create_shot_list(article, "sample-article", 3)
     manifest = create_manifest_draft.create_manifest_draft(shot_list, "sample-article", "default", str(tmp_path))
     character = json.loads((ROOT / "characters" / "default" / "character.json").read_text(encoding="utf-8"))
     shot = manifest["shots"][0]
     overlay_json = json.loads((tmp_path / shot["overlay_file"]).read_text(encoding="utf-8"))
-    prompt = render_prompt.render_visual_prompt(shot, character, manifest["style_profile"], {"mode": manifest["mode"]}, overlay_json)
+    prompt = render_prompt.render_visual_prompt(
+        shot,
+        character,
+        manifest["style_profile"],
+        {"mode": manifest["mode"], "text_strategy": manifest["text_strategy"]},
+        overlay_json,
+    )
+    assert manifest["text_strategy"] == "image_text_native"
     for label in overlay_json["labels"]:
-        assert label["text"] not in prompt
+        assert label["text"] in prompt

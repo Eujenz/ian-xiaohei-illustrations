@@ -1,8 +1,12 @@
 # Rendering Policy
 
-v0.1 is textless-first. Image prompts must never ask a model to render readable Chinese text. Overlay labels become blank visual placeholders in prompts, while actual Chinese label text remains only in overlay JSON, manifests, QA reports, and deterministic final PNGs.
+Primary article rendering is native-text-first. Image prompts should ask the model to render a few short handwritten Chinese labels directly in the image, following the original `ian-xiaohei-illustrations` method. Visual consistency is higher priority than deterministic text precision.
 
-Generation is overlay-after-generation: render or supply a textless image first, then apply coordinate-based labels with `overlay_text.py`.
+Use `text_strategy: image_text_native` for ordinary article visualization. Generated PNGs under `final/` are already the final assets; `run_asset_pipeline.py` should create a contact sheet and export the bundle without applying `overlay_text.py`.
+
+Article prompts should include style vitality: pure white space, sparse wobbly black line art, low-tech physical metaphors, a deadpan square worker doing the core conceptual action, short handwritten Chinese annotations, and a strange-but-clean product sketch feeling.
+
+Legacy deterministic overlay is still available only when exact text is more important than visual unity. In that mode, image prompts must stay textless and `overlay_text.py` consumes explicit coordinates.
 
 `overlay_text.py` interface contract: consume image path, coordinate overlay JSON, optional font path, and output path. It must not perform OCR, blank-area detection, layout inference, semantic region detection, automatic repositioning, segmentation, whitespace detection, or AI/vision calls.
 

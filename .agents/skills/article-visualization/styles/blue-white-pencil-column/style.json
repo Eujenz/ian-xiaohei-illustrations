@@ -1,0 +1,36 @@
+{
+  "style_id": "blue-white-pencil-column",
+  "display_name": "Blue White Pencil Column",
+  "description": "Blue-and-white colored-pencil magazine column illustration with gentle rounded forms, airy margins, and soft editorial warmth.",
+  "visual_dna": {
+    "background": "clean white magazine-column space with soft blue framing accents and no texture",
+    "line_art": "gentle blue-gray colored-pencil line, lightly uneven, with soft hand-filled blue shading",
+    "metaphor_logic": "friendly editorial metaphors using desks, tiny task stations, paper flows, inboxes, soft machines, rails, folders, and small helper agents",
+    "composition": "airy magazine column illustration with one clear conceptual scene, generous white margins, and calm blue-white balance",
+    "character_treatment": "an original soft round helper character performs the core task with warm but focused energy",
+    "accent_colors": "mostly blue and white, with tiny pale yellow highlights only for attention; avoid red except for very small warning marks"
+  },
+  "prompt_rules": {
+    "style_block": [
+      "Use a blue-and-white colored-pencil magazine column illustration style.",
+      "Keep a clean white background with airy margins, soft blue framing accents, and gentle blue-gray pencil lines.",
+      "Use soft hand-filled blue shading and rounded friendly shapes; avoid hard vector edges.",
+      "Build one clear editorial metaphor using desks, paper flows, inboxes, rails, folders, soft machines, or small helper agents.",
+      "The character must perform the core task inside the scene, with gentle focus and not as a decorative mascot.",
+      "Make the image feel like a warm magazine column spot illustration: calm, readable, lightly whimsical, and not childish.",
+      "Use mostly blue and white; add tiny pale yellow highlights only where attention is needed."
+    ],
+    "placeholder_policy": "Use blank blue-white plaques, empty paper tabs, blank inbox labels, or unlabeled callout cards for deterministic overlay.",
+    "negative_rules": [
+      "no readable Chinese text",
+      "no Chiikawa likeness",
+      "no official mascot reproduction",
+      "no speech text",
+      "no dense infographic",
+      "no PPT slide composition",
+      "no corporate vector style",
+      "no UI screenshot",
+      "no title block"
+    ]
+  }
+}

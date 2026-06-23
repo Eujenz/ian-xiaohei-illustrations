@@ -42,7 +42,7 @@ def create_manifest_draft(shot_list: dict, article_slug: str, character_id: str,
         "mode": "article_visualization",
         "article_slug": article_slug,
         "character_id": character_id,
-        "text_strategy": "overlay_after_generation",
+        "text_strategy": "image_text_native",
         "style_profile": {
             "canvas": "16:9 horizontal article illustration",
             "line": "hand-drawn black line art",
@@ -74,7 +74,7 @@ def create_manifest_draft(shot_list: dict, article_slug: str, character_id: str,
             "overlay_file": overlay_rel,
             "textless_image": f"textless/{shot_id}.textless.png",
             "final_image": f"final/{shot_id}.final.png",
-            "qa_status": "pending",
+            "qa_status": "waiting_for_native_image",
         })
     return manifest
 

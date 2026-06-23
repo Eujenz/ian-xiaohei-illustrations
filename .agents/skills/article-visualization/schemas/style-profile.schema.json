@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "style_id",
+    "display_name",
+    "description",
+    "visual_dna",
+    "prompt_rules"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "style_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visual_dna": {
+      "type": "object",
+      "required": [
+        "background",
+        "line_art",
+        "metaphor_logic",
+        "composition",
+        "character_treatment",
+        "accent_colors"
+      ],
+      "properties": {
+        "background": {"type": "string", "minLength": 1},
+        "line_art": {"type": "string", "minLength": 1},
+        "metaphor_logic": {"type": "string", "minLength": 1},
+        "composition": {"type": "string", "minLength": 1},
+        "character_treatment": {"type": "string", "minLength": 1},
+        "accent_colors": {"type": "string", "minLength": 1}
+      }
+    },
+    "prompt_rules": {
+      "type": "object",
+      "required": [
+        "style_block",
+        "placeholder_policy",
+        "negative_rules"
+      ],
+      "properties": {
+        "style_block": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "placeholder_policy": {"type": "string", "minLength": 1},
+        "negative_rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "character_id": "lazy-yolk",
+  "display_name": "Lazy Yolk Worker",
+  "visual_identity": {
+    "base_silhouette": "small original lazy egg-yolk body, soft oval blob shape, slightly melted underside, simple thin arms and legs",
+    "eyes": "two tiny sleepy dot eyes with a flat deadpan mouth",
+    "line_style": "slightly wobbly black hand-drawn outline with a pale yellow fill",
+    "default_pose_language": "sleepy, reluctant, deadpan operator energy; tired but still doing the core work"
+  },
+  "core_role": {
+    "description": "An original lazy egg-yolk operator that participates in the main visual mechanism despite looking exhausted.",
+    "must_be_core_actor": true,
+    "forbidden_role": "decorative mascot, branded character imitation, corner decoration, idle observer, or poster-like cute pose"
+  },
+  "action_library": [
+    {
+      "id": "slump-carry",
+      "description": "Carry raw material while sagging slightly from effort.",
+      "best_for": ["concept_metaphor", "filtering"],
+      "prompt_snippet": "The lazy yolk operator slumps forward while carrying raw material into the main mechanism."
+    },
+    {
+      "id": "limp-pull",
+      "description": "Pull a lever or rope with reluctant effort.",
+      "best_for": ["workflow", "map_route", "bottleneck"],
+      "prompt_snippet": "The lazy yolk operator reluctantly pulls a lever connected to the core mechanism."
+    },
+    {
+      "id": "sleepy-sort",
+      "description": "Sort blocks or tokens with a tired deadpan expression.",
+      "best_for": ["system_local", "contrast"],
+      "prompt_snippet": "The lazy yolk operator sleepily sorts small tokens into simple physical piles."
+    },
+    {
+      "id": "soft-point",
+      "description": "Point at the key comparison while half-slumped over the workbench.",
+      "best_for": ["before_after", "character_state"],
+      "prompt_snippet": "The lazy yolk operator points at the key comparison while half-slumped over the workbench."
+    },
+    {
+      "id": "droop-repair",
+      "description": "Repair a tiny machine while drooping over the tool.",
+      "best_for": ["method_layering", "process"],
+      "prompt_snippet": "The lazy yolk operator droops over a tiny tool while repairing the low-tech machine."
+    }
+  ],
+  "deformation_defaults": {
+    "allow_deformation_by_default": false,
+    "allowed_in_sticker_mode": false,
+    "requires_explicit_trigger": true
+  },
+  "deformation_rules": [
+    {
+      "id": "melting-funnel",
+      "allowed": true,
+      "trigger": {"structure_type": ["concept_metaphor"], "anchor_type": ["filtering"]},
+      "description": "The yolk body gently sags into a funnel-like shape while remaining an original egg-yolk worker.",
+      "max_intensity": "medium",
+      "prompt_snippet": "Conditionally let the lazy yolk body sag into a simple funnel-like shape while keeping the sleepy dot eyes and small limbs recognizable."
+    },
+    {
+      "id": "wedged-yolk",
+      "allowed": true,
+      "trigger": {"structure_type": ["system_local"], "anchor_type": ["bottleneck"]},
+      "description": "The yolk worker is lightly wedged in a low-tech bottleneck.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the lazy yolk operator lightly wedged in the bottleneck mechanism, still recognizable and not grotesque."
+    },
+    {
+      "id": "flattened-yolk",
+      "allowed": true,
+      "trigger": {"structure_type": ["before_after"], "anchor_type": ["pressure"]},
+      "description": "The yolk worker is mildly flattened by pressure.",
+      "max_intensity": "low",
+      "prompt_snippet": "Show the lazy yolk operator mildly flattened by pressure while preserving the sleepy face and soft oval silhouette."
+    }
+  ],
+  "negative_rules": [
+    "no branded character treatment",
+    "no Sanrio or Gudetama likeness",
+    "no official mascot reproduction",
+    "no complex clothing",
+    "no cute mascot pose",
+    "no corner decoration",
+    "no children's cartoon style",
+    "no unrecognizable deformation"
+  ]
+}

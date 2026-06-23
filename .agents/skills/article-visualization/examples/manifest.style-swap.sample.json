@@ -1,0 +1,76 @@
+{
+  "mode": "article_visualization",
+  "article_slug": "sample-filter-handoff",
+  "character_id": "default",
+  "text_strategy": "overlay_after_generation",
+  "style_profile": {
+    "style_id": "technical-pencil",
+    "display_name": "Technical Pencil Sketch",
+    "description": "Careful engineering notebook sketch style with restrained pencil-like linework and quiet mechanical clarity.",
+    "visual_dna": {
+      "background": "clean white engineering notebook space without ruled paper or texture",
+      "line_art": "thin black pencil-like hand sketch, precise but still hand-drawn and slightly imperfect",
+      "metaphor_logic": "mechanical assemblies, cross-sections, gauges, cutaway machines, pipes, tokens, bridges, and simple lab bench props",
+      "composition": "balanced engineering sketch with clear object hierarchy, generous margins, and no slide-like grid",
+      "character_treatment": "the character works like a tiny technician inside the mechanism, inspecting, routing, repairing, or measuring",
+      "accent_colors": "very restrained blue for system state, muted orange for active paths, tiny red marks for faults"
+    },
+    "prompt_rules": {
+      "style_block": [
+        "Use a clean engineering notebook sketch feeling: thin black pencil-like hand-drawn lines, precise but not vector-perfect.",
+        "Favor mechanical clarity: cutaway machines, gauges, bridges, pipes, token tracks, small fixtures, and lab-bench props.",
+        "The character should act like a tiny technician inside the mechanism, inspecting, routing, repairing, or measuring the concept.",
+        "Keep the layout quiet and readable with generous margins; avoid classroom diagram density and avoid corporate polish.",
+        "Use very restrained accents: muted orange for the active path, blue for system state, and tiny red marks only for faults or friction.",
+        "Preserve blank white space and do not add background texture, ruled paper, shadows, or decorative effects."
+      ],
+      "placeholder_policy": "Use blank technical tags, empty measuring plates, or unlabeled callout tabs for deterministic overlay.",
+      "negative_rules": [
+        "no readable Chinese text",
+        "no equations rendered as text",
+        "no UI screenshot",
+        "no dense engineering blueprint",
+        "no corporate vector rendering",
+        "no title block"
+      ]
+    }
+  },
+  "shots": [
+    {
+      "id": "01",
+      "placement": "hero",
+      "anchor_type": "filtering",
+      "theme": "judgment from noisy material",
+      "core_idea": "filtering noisy material into useful judgment",
+      "structure_type": "concept_metaphor",
+      "metaphor": "a low-tech funnel sorting messy scraps into one clear block",
+      "character_action": "carry",
+      "visual_prompt_file": "prompts-style-swap/01.visual.md",
+      "overlay_file": "overlays/01.overlay.json",
+      "textless_image": "textless/01.textless.png",
+      "final_image": "final/01.final.png",
+      "qa_status": "pending"
+    },
+    {
+      "id": "02",
+      "placement": "body",
+      "anchor_type": "handoff",
+      "theme": "transition into action",
+      "core_idea": "handoff from judgment to next action",
+      "structure_type": "workflow",
+      "metaphor": "two simple workstations passing a parcel",
+      "character_action": "handoff",
+      "visual_prompt_file": "prompts-style-swap/02.visual.md",
+      "overlay_file": "overlays/02.overlay.json",
+      "textless_image": "textless/02.textless.png",
+      "final_image": "final/02.final.png",
+      "qa_status": "pending"
+    }
+  ],
+  "style_id": "technical-pencil",
+  "style_replacement": {
+    "source_style_id": null,
+    "target_style_id": "technical-pencil",
+    "created_by": "swap_style.py"
+  }
+}

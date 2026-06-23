@@ -132,11 +132,15 @@ Use $ian-xiaohei-illustrations 为这篇中文文章设计并生成 5 张小黑�
 
 ## Article Visualization Skill v0.1
 
-This repository also includes a repo-scoped Codex Skill scaffold at `.agents/skills/article-visualization/`. It implements a deterministic textless-first pipeline for Chinese article visualization:
+This repository also includes a repo-scoped Codex Skill scaffold at `.agents/skills/article-visualization/`. Its primary article workflow follows the original `ian-xiaohei-illustrations` approach: short Chinese handwritten labels are rendered by the image model as part of the illustration.
 
 ```text
-manifest -> visual prompt -> textless image -> overlay JSON -> final image -> QA report
+manifest -> native visual prompt with Chinese labels -> generated final image -> visual QA -> contact sheet -> asset bundle
 ```
+
+Article prompts include Xiaohei-style vitality: sparse white-space composition, wobbly black hand-drawn line art, low-tech physical metaphors, a deadpan square worker doing the core conceptual action, and a few short handwritten Chinese annotations. Visual unity is the priority; deterministic overlay remains a legacy fallback when exact text is more important.
+
+Style and character are both swappable. Character profiles live in `.agents/skills/article-visualization/characters/`; style profiles live in `.agents/skills/article-visualization/styles/`.
 
 Install the lightweight Python dependencies:
 
@@ -144,34 +148,10 @@ Install the lightweight Python dependencies:
 python -m pip install pillow jsonschema pytest
 ```
 
-Create deterministic sample textless assets:
-
-```bash
-python .agents/skills/article-visualization/scripts/create_sample_assets.py
-```
-
-Render a textless visual prompt:
+Render a native-text visual prompt:
 
 ```bash
 python .agents/skills/article-visualization/scripts/render_prompt.py --manifest .agents/skills/article-visualization/examples/manifest.sample.json --character .agents/skills/article-visualization/characters/default/character.json --overlay .agents/skills/article-visualization/examples/overlays/01.overlay.json --shot-id 01 --output .agents/skills/article-visualization/examples/prompts/01.visual.md
-```
-
-Run deterministic text QA on overlay JSON:
-
-```bash
-python .agents/skills/article-visualization/scripts/qa_text.py --overlay .agents/skills/article-visualization/examples/overlays/01.overlay.json --output .agents/skills/article-visualization/examples/qa/01.qa-text.json
-```
-
-Render Chinese labels from explicit overlay coordinates:
-
-```bash
-python .agents/skills/article-visualization/scripts/overlay_text.py --image .agents/skills/article-visualization/examples/textless/01.textless.png --overlay .agents/skills/article-visualization/examples/overlays/01.overlay.json --output .agents/skills/article-visualization/examples/final/01.final.png --font /path/to/CJK-font.ttf
-```
-
-Run the resumable v0.1 pipeline:
-
-```bash
-python .agents/skills/article-visualization/scripts/run_pipeline.py --article-dir .agents/skills/article-visualization/examples --font /path/to/CJK-font.ttf
 ```
 
 Run tests:
@@ -186,13 +166,19 @@ Generate a v0.2 deterministic shot-list and manifest draft from a Markdown artic
 python .agents/skills/article-visualization/scripts/run_article_planning.py --article .agents/skills/article-visualization/examples/article.sample.md --output-dir .agents/skills/article-visualization/examples --article-slug sample-article --character-id default --max-shots 5
 ```
 
-Run the v0.3 post-generation asset pipeline after textless PNGs exist:
+Run the native-text asset pipeline after generated final PNGs exist:
 
 ```bash
-python .agents/skills/article-visualization/scripts/import_textless_images.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --source-dir /path/to/generated/textless/images --mode filename
-python .agents/skills/article-visualization/scripts/run_asset_pipeline.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --font /path/to/CJK-font.ttf
+python .agents/skills/article-visualization/scripts/import_native_images.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --source-dir /path/to/generated/final/images --mode filename
+python .agents/skills/article-visualization/scripts/run_asset_pipeline.py --article-dir .agents/skills/article-visualization/examples/generated/my-article
 python .agents/skills/article-visualization/scripts/create_contact_sheet.py --images .agents/skills/article-visualization/examples/generated/my-article/final --output .agents/skills/article-visualization/examples/generated/my-article/contact-sheet.png --cols 3
 python .agents/skills/article-visualization/scripts/export_article_assets.py --article-dir .agents/skills/article-visualization/examples/generated/my-article --output .agents/skills/article-visualization/examples/generated/my-article/export/my-article-assets.zip
+```
+
+Legacy deterministic overlay remains available for exact text safety:
+
+```text
+manifest -> textless visual prompt -> textless image -> overlay JSON -> final image -> QA report
 ```
 
 Use the v0.4 character replacement tools:
@@ -204,6 +190,15 @@ python .agents/skills/article-visualization/scripts/create_character_profile.py 
 python .agents/skills/article-visualization/scripts/swap_character.py --manifest .agents/skills/article-visualization/examples/manifest.sample.json --character-id sample-alt --output .agents/skills/article-visualization/examples/manifest.character-swap.sample.json --prompt-output-dir .agents/skills/article-visualization/examples/prompts-character-swap
 python .agents/skills/article-visualization/scripts/run_pipeline.py --article-dir .agents/skills/article-visualization/examples --manifest manifest.character-swap.sample.json --force
 python .agents/skills/article-visualization/scripts/compare_character_prompts.py --original-dir .agents/skills/article-visualization/examples/prompts --swapped-dir .agents/skills/article-visualization/examples/prompts-character-swap --output .agents/skills/article-visualization/examples/character-prompt-diff.report.json --overlay-dir .agents/skills/article-visualization/examples/overlays --manifest .agents/skills/article-visualization/examples/manifest.character-swap.sample.json
+```
+
+Use style replacement tools:
+
+```bash
+python .agents/skills/article-visualization/scripts/list_styles.py --styles-dir .agents/skills/article-visualization/styles
+python .agents/skills/article-visualization/scripts/validate_style_profile.py --style .agents/skills/article-visualization/styles/xiaohei-vitality/style.json
+python .agents/skills/article-visualization/scripts/swap_style.py --manifest .agents/skills/article-visualization/examples/manifest.sample.json --style .agents/skills/article-visualization/styles/technical-pencil/style.json --output .agents/skills/article-visualization/examples/manifest.style-swap.sample.json --prompt-output-dir prompts-style-swap
+python .agents/skills/article-visualization/scripts/render_prompt.py --manifest .agents/skills/article-visualization/examples/manifest.style-swap.sample.json --character .agents/skills/article-visualization/characters/default/character.json --overlay .agents/skills/article-visualization/examples/overlays/01.overlay.json --shot-id 01 --output .agents/skills/article-visualization/examples/prompts-style-swap/01.visual.md
 ```
 
 Prepare a v0.5 static sticker set scaffold:

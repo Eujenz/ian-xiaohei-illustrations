@@ -8,7 +8,7 @@
     "article_slug": {"type": "string"},
     "style_profile": {"type": "object"},
     "character_id": {"type": "string"},
-    "text_strategy": {"const": "overlay_after_generation"},
+    "text_strategy": {"enum": ["image_text_native", "overlay_after_generation"]},
     "shots": {
       "type": "array",
       "items": {
@@ -27,7 +27,7 @@
           "overlay_file": {"type": "string"},
           "textless_image": {"type": "string"},
           "final_image": {"type": "string"},
-          "qa_status": {"enum": ["pending", "prompt_ready", "waiting_for_textless_image", "text_pass", "done", "failed"]}
+          "qa_status": {"enum": ["pending", "prompt_ready", "waiting_for_native_image", "waiting_for_textless_image", "text_pass", "done", "failed"]}
         }
       }
     }

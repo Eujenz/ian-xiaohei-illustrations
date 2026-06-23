@@ -1,0 +1,34 @@
+{
+  "style_id": "xiaohei-vitality",
+  "display_name": "Xiaohei Vitality",
+  "description": "Sparse white-space, wobbly hand-drawn, strange-but-clean low-tech object sketches with deadpan character action.",
+  "visual_dna": {
+    "background": "pure white background with lots of empty space",
+    "line_art": "sparse, slightly wobbly black hand-drawn line art",
+    "metaphor_logic": "low-tech physical metaphors such as levers, carts, gears, funnels, workbenches, meters, scraps, parcels, and small machines",
+    "composition": "main subject occupies about 40%-60% of the canvas with at least 35% blank white space",
+    "character_treatment": "the character does the strange conceptual work with a deadpan serious expression",
+    "accent_colors": "orange for paths/arrows, red for warnings or friction, blue for secondary state, green/yellow only for object separation"
+  },
+  "prompt_rules": {
+    "style_block": [
+      "Pure white background with sparse, slightly wobbly black hand-drawn line art.",
+      "Use a clean low-tech physical metaphor: switches, levers, carts, gears, funnels, workbenches, meters, labels, scraps, parcels, or small machines.",
+      "The character must do the strange conceptual work inside the mechanism, with a deadpan serious expression; never place the character as a cute mascot or idle observer.",
+      "Make the scene clear but not instructional, interesting but not childish, strange but clean.",
+      "Avoid formal diagram language: no PPT slide composition, no corporate vector infographic, no realistic UI, no dense chart, no title block.",
+      "Composition target: the main subject should occupy about 40%-60% of the canvas; preserve at least 35% blank white space.",
+      "Use light accent colors sparingly: orange for paths/arrows, red for warnings or friction, blue for secondary state, green/yellow only when a physical object needs separation."
+    ],
+    "placeholder_policy": "All label areas must remain blank visual plaques, signs, callouts, or notes for deterministic overlay.",
+    "negative_rules": [
+      "no readable Chinese text",
+      "no PPT slide composition",
+      "no corporate vector infographic",
+      "no realistic UI",
+      "no dense chart",
+      "no title block",
+      "no cute mascot posing"
+    ]
+  }
+}

@@ -19,12 +19,13 @@ def validate_manifest_schema(manifest: dict, schema_path: str | None = None) -> 
 def validate_shot_list(manifest: dict) -> list[str]:
     errors: list[str] = []
     seen: set[str] = set()
+    allowed_text_strategies = {"image_text_native", "overlay_after_generation"}
+    if manifest.get("text_strategy") not in allowed_text_strategies:
+        errors.append("text_strategy must be image_text_native or overlay_after_generation")
     for shot in manifest.get("shots", []):
         if shot.get("id") in seen:
             errors.append(f"duplicate shot id {shot.get('id')}")
         seen.add(shot.get("id"))
-        if manifest.get("text_strategy") != "overlay_after_generation":
-            errors.append("text_strategy must be overlay_after_generation")
     return errors
 
 

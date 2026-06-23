@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Changed the default article workflow to native text generation: image prompts now include short handwritten Chinese labels for model-rendered text.
+- Added `style-vitality.md` reference for sparse white-space, wobbly hand-drawn, deadpan character action, and low-tech physical metaphor constraints.
+- Updated article prompt tests to assert native-text prompts include actual Chinese labels when `text_strategy=image_text_native`.
+- Added first-class style profiles with validation, listing, and manifest style swapping tools.
+- Added starter styles: `xiaohei-vitality`, `technical-pencil`, and `editorial-ink`.
+- Added `lazy-yolk` as an original swappable character profile for role/character replacement experiments.
+- Added `import_native_images.py` for importing externally generated final PNGs that already contain Chinese handwritten labels.
+- Updated `run_asset_pipeline.py` to package native-text final images without applying deterministic overlays.
+
 ## v0.6.0
 
 - Added post-generation static sticker asset pipeline.

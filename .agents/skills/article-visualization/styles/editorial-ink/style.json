@@ -1,0 +1,33 @@
+{
+  "style_id": "editorial-ink",
+  "display_name": "Editorial Ink Objects",
+  "description": "Minimal editorial object illustration with confident ink lines, surreal props, and magazine-like narrative restraint.",
+  "visual_dna": {
+    "background": "warm white empty editorial space without texture",
+    "line_art": "confident black ink line with a hand-drawn wobble and a few slightly heavier outlines",
+    "metaphor_logic": "surreal editorial props, simple stage-like object arrangements, symbolic machines, doors, bridges, counters, and everyday objects doing conceptual work",
+    "composition": "single strong metaphor with asymmetry, breathing room, and a subtle narrative beat",
+    "character_treatment": "the character behaves like a reluctant editorial protagonist caught inside the metaphor",
+    "accent_colors": "one or two muted editorial accents only, usually orange and blue with occasional red emphasis"
+  },
+  "prompt_rules": {
+    "style_block": [
+      "Use a minimal editorial ink illustration style: warm white empty space, confident black ink lines, and a few heavier hand-drawn outlines.",
+      "Build one strong surreal object metaphor rather than a technical diagram: strange props, symbolic machines, doors, bridges, counters, or everyday objects doing conceptual work.",
+      "Let the character behave like a reluctant protagonist inside the metaphor, actively causing or resolving the visual tension.",
+      "Prefer asymmetry and a magazine-like narrative beat; keep the composition sparse, witty, and slightly absurd.",
+      "Use one or two muted accent colors only, mainly orange and blue, with red reserved for a key tension point.",
+      "Avoid formal workflow diagrams, dashboards, dense labels, and course-slide structure."
+    ],
+    "placeholder_policy": "Use blank editorial plaques, empty speechless signs, or unlabeled object tags for deterministic overlay.",
+    "negative_rules": [
+      "no readable Chinese text",
+      "no comic speech text",
+      "no dashboard UI",
+      "no PPT infographic",
+      "no dense chart",
+      "no stock editorial photo style",
+      "no title block"
+    ]
+  }
+}
